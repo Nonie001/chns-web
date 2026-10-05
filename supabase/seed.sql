@@ -1,0 +1,2 @@
+-- No users or sample content are seeded. Create the first admin in Supabase Auth,
+-- then add their UUID to public.chns_admin_users as described in docs/supabase-setup.md.
