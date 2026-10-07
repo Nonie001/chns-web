@@ -10,6 +10,11 @@ export const departments = [
   { slug: "communications", name: "ฝ่ายการตลาดและสื่อสาร" },
 ] as const;
 
+export const contactDepartments = [
+  { slug: "general", name: "สำนักงานกลาง / ไม่แน่ใจ" },
+  ...departments,
+] as const;
+
 type NavigationItem = {
   label: string;
   href: string;
@@ -21,15 +26,9 @@ export const site = {
   officialName: "สภาเครือข่ายช่วยเหลือด้านมนุษยธรรม สำนักจุฬาราชมนตรี",
   navigation: [
     { label: "หน้าแรก", href: "/" },
-    { label: "เกี่ยวกับเรา", href: "/about", children: [
-      { label: "ประวัติองค์กร", href: "/about/history" },
-      { label: "วิสัยทัศน์", href: "/about/direction#vision" },
-      { label: "พันธกิจ", href: "/about/direction#mission" },
-      { label: "วัตถุประสงค์", href: "/about/direction#objectives" },
-      { label: "โครงสร้างบริหาร", href: "/about/structure" },
-    ] },
-    { label: "กิจกรรมภารกิจ", href: "/projects", children: [
-      { label: "ฝ่ายงานทั้งหมด", href: "/departments" },
+    { label: "เกี่ยวกับเรา", href: "/about" },
+    { label: "โครงการและภารกิจ", href: "/projects" },
+    { label: "ฝ่ายของเรา", href: "/departments", children: [
       ...departments.map((department) => ({ label: department.name, href: `/departments/${department.slug}` })),
     ] },
     { label: "ศูนย์ประสานงาน", href: "/centers", children: [
@@ -38,16 +37,10 @@ export const site = {
       { label: "องค์กรสมาชิก", href: "/#network" },
     ] },
     { label: "ข่าวสาร", href: "/news", children: [
-      { label: "ข่าวประชาสัมพันธ์", href: "/news?kind=news" },
-      { label: "ภารกิจล่าสุด", href: "/projects" },
-      { label: "บทความและเรื่องราว", href: "/news?kind=story" },
       { label: "วิดีโอและสื่อ", href: "/media" },
       { label: "รายงานและเอกสาร", href: "/reports" },
     ] },
-    { label: "ร่วมกับเรา", href: "/participate", children: [
-      { label: "ร่วมสนับสนุน", href: "/participate/donate" },
-      { label: "สมัครสมาชิกองค์กร", href: "/participate/membership" },
-    ] },
+    { label: "ร่วมกับเรา", href: "/participate" },
     { label: "ติดต่อเรา", href: "/contact" },
   ] satisfies readonly NavigationItem[],
 } as const;

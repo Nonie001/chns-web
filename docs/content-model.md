@@ -24,6 +24,7 @@
 | `MediaAsset` | storage key, MIME, size, alt, caption, permission, visibility | อ้างอิงจากคอนเทนต์หลายประเภท |
 | `HomepageFeature` (ใช้งานขั้นแรก) | slot (`article_1`, `project_1`, `project_2`), contentId, updatedBy, updatedAt | เลือกข่าว/โครงการที่เผยแพร่แล้ว; ตารางเวลาและแบนเนอร์เร่งด่วนยังเป็นงานถัดไป |
 | `SiteSetting` | emergency banner, ช่องทางที่ต้องแก้โดยทีมงาน | แยกค่าที่แก้ผ่าน admin จากข้อมูล static ในโค้ด |
+| `ContactInquiry` | ฝ่ายที่ผู้ส่งเลือก, หัวข้อ, ชื่อ–สกุล, โทรศัพท์, อีเมล, LINE ID, รายละเอียด, สถานะ, วันรับเรื่อง | ข้อมูลส่วนตัวใน Supabase; รับผ่าน RPC ที่ตรวจข้อมูลและจำกัดการส่งซ้ำ, อ่านและเปลี่ยนสถานะได้เฉพาะ admin; ไม่ส่งออกสู่ public route |
 | `HeroSlide` (ใช้งานแล้ว) | title สำหรับหลังบ้าน, imageKey, mobileImageKey (ไม่บังคับ), imageAlt, status, position, publishedAt | หน้าแรกแสดงเฉพาะภาพของ published; ข้อความที่เห็นอยู่ในไฟล์ภาพ ทุกการแก้ไขบันทึก `hero_slide_audit` |
 
 Taxonomy กลาง: ฝ่าย, ประเภทภารกิจ, ประเภทข่าว, ประเทศ/จังหวัด, ปี และ tag. ไม่ใช้ข้อความอิสระสำหรับความสัมพันธ์หลัก เช่น ชื่อฝ่ายในข่าว เพราะเปลี่ยนชื่อแล้วข้อมูลจะไม่เชื่อมกัน

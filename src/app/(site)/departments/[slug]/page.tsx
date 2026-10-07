@@ -40,7 +40,6 @@ export default async function DepartmentPage({
         eyebrow="DEPARTMENT"
         title={department.name}
         description={profile.summary}
-        parent={{ label: "งานของเรา", href: "/departments" }}
       />
       <section className="section page-section">
         <div className="shell detail-grid">

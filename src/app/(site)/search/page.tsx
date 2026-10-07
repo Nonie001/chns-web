@@ -25,8 +25,8 @@ export default async function SearchPage({
   ]);
   const searchable = [
     ...departments.map((item) => ({ title: item.name, description: "ฝ่ายงาน", href: `/departments/${item.slug}` })),
-    ...projects.map((item) => ({ title: item.title, description: `${item.isDemo ? "ตัวอย่าง · " : ""}${item.summary}`, href: `/projects/${item.slug}` })),
-    ...articles.map((item) => ({ title: item.title, description: `${item.isDemo ? "ตัวอย่าง · " : ""}${item.summary}`, href: `/news/${item.slug}` })),
+    ...projects.map((item) => ({ title: item.title, description: item.summary, href: `/projects/${item.slug}` })),
+    ...articles.map((item) => ({ title: item.title, description: item.summary, href: `/news/${item.slug}` })),
     ...reports.map((item) => ({ title: item.title, description: item.summary, href: `/reports/${item.slug}` })),
     ...partners.map((item) => ({ title: item.name, description: "องค์กรสมาชิก", href: `/#partner-${item.id}` })),
   ];

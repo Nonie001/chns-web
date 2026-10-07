@@ -31,7 +31,6 @@ export default async function ProjectsPage({ searchParams }: PageProps<"/project
         title="โครงการและภารกิจ"
         description="พื้นที่ติดตามเป้าหมาย ความคืบหน้า และผลลัพธ์ของงานด้านมนุษยธรรม"
         imageSrc="/editorial/work-areas.webp"
-        imageCaption="ภาพประกอบแนวคิดการทำงานร่วมกัน"
       />
       <section className="section page-section">
         <div className="shell">
@@ -42,7 +41,6 @@ export default async function ProjectsPage({ searchParams }: PageProps<"/project
             </div>
             <p>อ่านรายละเอียด พื้นที่ และฝ่ายรับผิดชอบของโครงการที่เผยแพร่แล้ว</p>
           </div>
-          {projects.some((project) => project.isDemo) && <p className="article-demo-banner">โครงการด้านล่างเป็นตัวอย่างเพื่อดูรูปแบบเว็บไซต์ ไม่ใช่ภารกิจจริงของ CHNS และยังไม่เปิดรับการสนับสนุน</p>}
           <form className="content-filter" action="/projects" method="get" role="search">
             <div><label htmlFor="project-query">ค้นหาโครงการ</label><input id="project-query" name="q" type="search" defaultValue={query} placeholder="ชื่อโครงการหรือพื้นที่" maxLength={80} /></div>
             <div><label htmlFor="project-department">ฝ่ายงาน</label><select id="project-department" name="department" defaultValue={department}><option value="">ทุกฝ่าย</option>{departments.map((item) => <option value={item.slug} key={item.slug}>{item.name}</option>)}</select></div>

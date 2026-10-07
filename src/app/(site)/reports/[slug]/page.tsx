@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublishedReport } from "@/features/reports/report-store";
-import { SiteBreadcrumbs } from "@/components/site/site-breadcrumbs";
 
 export const dynamic = "force-dynamic";
 
@@ -18,7 +17,6 @@ export default async function ReportDetailPage({ params }: PageProps<"/reports/[
   if (!report) notFound();
   return (
     <>
-      <SiteBreadcrumbs items={[{ label: "รายงานและเอกสาร", href: "/reports" }, { label: report.title }]} />
       <section className="detail-hero">
         <div className="shell">
           <p className="eyebrow eyebrow--light">{report.kind} · ปี {report.year}</p>

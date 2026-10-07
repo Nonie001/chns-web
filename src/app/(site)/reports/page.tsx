@@ -21,7 +21,7 @@ export default async function ReportsPage({ searchParams }: PageProps<"/reports"
   );
   return (
     <>
-      <PageHero eyebrow="REPORTS & RESOURCES" title="รายงานและเอกสาร" description="พื้นที่รวบรวมรายงานภารกิจและเอกสารที่องค์กรอนุมัติให้เผยแพร่" imageSrc="/editorial/transparency.webp" imageCaption="ภาพประกอบแนวคิดความโปร่งใส" />
+      <PageHero eyebrow="REPORTS & RESOURCES" title="รายงานและเอกสาร" description="พื้นที่รวบรวมรายงานภารกิจและเอกสารที่องค์กรอนุมัติให้เผยแพร่" imageSrc="/editorial/transparency.webp" />
       <section className="section page-section">
         <div className="shell">
           <div className="section-heading">

@@ -1,60 +1,68 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { PageHero } from "@/components/site/page-hero";
+import { ContactForm } from "@/components/site/contact-form";
+import { SocialLinks } from "@/components/site/social-links";
 import { organizationContact } from "@/content/static/organization";
 
 export const metadata: Metadata = {
   title: "ติดต่อเรา | CHNS",
-  description: "ช่องทางติดต่อสภาเครือข่ายช่วยเหลือด้านมนุษยธรรม",
+  description: "ส่งเรื่องถึงฝ่ายที่เกี่ยวข้อง หรือดูช่องทางติดต่อสำนักงาน CHNS",
 };
 
 export default function ContactPage() {
   return (
     <>
-      <PageHero
-        eyebrow="CONTACT CHNS"
-        title="ติดต่อเรา"
-        description="ที่อยู่ ช่องทางติดต่อ และเวลาทำการของสภาเครือข่ายช่วยเหลือด้านมนุษยธรรม"
-      />
-      <section className="section page-section">
+      <div className="contact-page">
         <div className="shell">
-          <div className="contact-grid">
+          <header className="contact-page__heading">
             <div>
-              <p className="eyebrow">GET IN TOUCH</p>
-              <h2 className="section-title">
-                ประสานงาน
-                <br />
-                <span>กับ CHNS</span>
-              </h2>
-              <p className="large-copy">
-                ติดต่อสำนักงานกลางตามช่องทางด้านล่าง หรือเลือกติดตามข่าวสารผ่านช่องทางออนไลน์ของ CHNS
-              </p>
-              <Link className="text-link" href="/about">
-                รู้จักองค์กร <span aria-hidden="true">↗</span>
-              </Link>
+              <p className="eyebrow">CONTACT CHNS</p>
+              <h1>ติดต่อเรา</h1>
             </div>
-            <div className="contact-cards">
-              <div>
-                <span>01 / สำนักงาน</span>
-                <h3>ที่อยู่ทางการ</h3>
-                <address>{organizationContact.address}</address>
-                <a href={organizationContact.mapUrl} target="_blank" rel="noopener noreferrer">เปิดแผนที่ ↗</a>
+            <p>มีเรื่องอยากพูดคุยหรือประสานงานกับเรา เลือกช่องทางที่สะดวก หรือส่งเรื่องถึงฝ่ายที่เกี่ยวข้องได้ที่นี่</p>
+          </header>
+
+          <div className="contact-page__layout">
+            <aside className="contact-page__details" aria-labelledby="contact-details-title">
+              <div className="contact-page__details-intro">
+                <span className="contact-page__details-kicker">ช่องทางติดต่อ</span>
+                <h2 id="contact-details-title">ติดต่อสำนักงาน</h2>
+                <p>สภาเครือข่ายช่วยเหลือด้านมนุษยธรรม สำนักจุฬาราชมนตรี</p>
               </div>
-              <div>
-                <span>02 / โทรศัพท์และอีเมล</span>
-                <h3>ช่องทางติดต่อ</h3>
-                <p><a href={`tel:${organizationContact.phoneHref}`}>{organizationContact.phoneDisplay}</a><br /><a href={`mailto:${organizationContact.email}`}>{organizationContact.email}</a></p>
-                <p>เวลาทำการ: {organizationContact.hours}</p>
+              <dl className="contact-page__details-list">
+                <div>
+                  <dt>โทรศัพท์</dt>
+                  <dd><a href={`tel:${organizationContact.phoneHref}`}>{organizationContact.phoneDisplay}<span aria-hidden="true">↗</span></a></dd>
+                </div>
+                <div>
+                  <dt>อีเมล</dt>
+                  <dd><a href={`mailto:${organizationContact.email}`}>{organizationContact.email}<span aria-hidden="true">↗</span></a></dd>
+                </div>
+                <div>
+                  <dt>ที่อยู่สำนักงาน</dt>
+                  <dd><address>{organizationContact.address}</address><a className="contact-page__map" href={organizationContact.mapUrl} target="_blank" rel="noopener noreferrer">ดูแผนที่ <span aria-hidden="true">↗</span></a></dd>
+                </div>
+                <div>
+                  <dt>เวลาทำการ</dt>
+                  <dd>{organizationContact.hours}</dd>
+                </div>
+              </dl>
+              <div className="contact-page__social">
+                <span>ติดตามเรา</span>
+                <SocialLinks className="contact-socials" />
               </div>
-              <div>
-                <span>03 / Social media</span>
-                <h3>ช่องทางออนไลน์</h3>
-                <ul className="contact-socials">{organizationContact.socials.map((social) => <li key={social.label}><a href={social.href} target="_blank" rel="noopener noreferrer">{social.label} ↗</a></li>)}</ul>
+            </aside>
+
+            <section className="contact-page__form-panel" id="contact-form" aria-labelledby="contact-form-title">
+              <div className="contact-page__form-heading">
+                <span className="contact-page__form-kicker">ส่งเรื่องถึงเรา</span>
+                <h2 id="contact-form-title">ฝากข้อความไว้ได้เลย</h2>
+                <p>เลือกฝ่ายและเล่าเรื่องที่ต้องการติดต่อ หากไม่แน่ใจให้เลือกสำนักงานกลาง</p>
               </div>
-            </div>
+              <ContactForm />
+            </section>
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 }

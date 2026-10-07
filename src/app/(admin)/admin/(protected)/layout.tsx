@@ -25,6 +25,7 @@ export default async function AdminProtectedLayout({
           <Link href="/admin/projects">โครงการ</Link>
           <Link href="/admin/reports">รายงาน</Link>
           <Link href="/admin/partners">โลโก้ภาคี</Link>
+          <Link href="/admin/inquiries">ข้อความติดต่อ</Link>
           <Link href="/admin/account">บัญชีและรหัสผ่าน</Link>
           <Link href="/">ดูเว็บไซต์ ↗</Link>
         </nav>

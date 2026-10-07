@@ -4,6 +4,7 @@ import { listAdminArticles } from "@/features/articles/article-store";
 import { listAdminProjects } from "@/features/projects/project-store";
 import { listAdminReports } from "@/features/reports/report-store";
 import { listAdminPartners } from "@/features/partners/partner-store";
+import { countNewContactInquiries } from "@/features/contact/contact-store";
 
 export default async function AdminDashboardPage() {
   const slides = await listAdminSlides();
@@ -11,6 +12,7 @@ export default async function AdminDashboardPage() {
   const projects = await listAdminProjects();
   const reports = await listAdminReports();
   const partners = await listAdminPartners();
+  const newInquiries = await countNewContactInquiries();
   const live = slides.filter((slide) => slide.status === "published").length;
   return (
     <>
@@ -32,6 +34,11 @@ export default async function AdminDashboardPage() {
           <span>ร่าง/เก็บถาวร</span>
           <strong>{slides.length - live}</strong>
         </div>
+      </div>
+      <div className="admin-panel">
+        <h2>ข้อความติดต่อ</h2>
+        <p>มีเรื่องใหม่รอรับ {newInquiries} รายการ</p>
+        <Link href="/admin/inquiries" className="button button--dark">ดูข้อความติดต่อ <span aria-hidden="true">↗</span></Link>
       </div>
       <div className="admin-panel">
         <h2>สไลด์หน้าแรก</h2>

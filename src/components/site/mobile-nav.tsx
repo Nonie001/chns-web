@@ -120,7 +120,7 @@ export function MobileNav() {
         </nav>
 
         <div className="mobile-nav__foot">
-          <Link className="button button--accent" href="/participate" onClick={() => closeMenu()}>ร่วมสนับสนุน</Link>
+          <Link className="button button--accent" href="/participate#support" onClick={() => closeMenu()}>ร่วมสนับสนุน</Link>
           <Link className="mobile-nav__search" href="/search" onClick={() => closeMenu()}>
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" strokeWidth="2" /><path d="m16 16 4.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
             ค้นหา

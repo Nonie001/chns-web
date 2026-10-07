@@ -21,12 +21,13 @@
 │   │   ├── icon.png                   # สัญลักษณ์จากโลโก้ที่ผู้ใช้ส่งมา
 │   │   ├── (site)/layout.tsx          # Header, Footer
 │   │   ├── (site)/page.tsx            # route /
-│   │   ├── (site)/about/...           # ประวัติ ทิศทาง โครงสร้าง
+│   │   ├── (site)/about/page.tsx      # ประวัติ ทิศทาง โครงสร้างในหน้าเดียว
 │   │   ├── (site)/departments/...     # รายชื่อและหน้าแต่ละฝ่าย
 │   │   ├── (site)/projects/...        # รายชื่อและหน้าแต่ละโครงการ
 │   │   ├── (site)/news/...            # รายชื่อและหน้าบทความ
 │   │   ├── (site)/media|reports|centers|members|search/...
-│   │   ├── (site)/participate/...     # สนับสนุนและสมาชิกองค์กร
+│   │   ├── (site)/participate/page.tsx # สนับสนุนและสมาชิกองค์กรในหน้าเดียว
+│   │   ├── (site)/contact/page.tsx      # ช่องทางติดต่อและแบบฟอร์มส่งเรื่อง
 │   │   ├── (admin)/admin/            # login และโมดูลคอนเทนต์ที่ตรวจ session
 │   │   └── api/                      # เสิร์ฟภาพ/PDF ตามสถานะเผยแพร่/สิทธิ์
 │   ├── components/
@@ -60,14 +61,14 @@
 
 | เว็บสาธารณะ `(site)` | หลังบ้าน `(admin)/admin` |
 | --- | --- |
-| `/`, `/about`, `/about/history`, `/about/direction`, `/about/structure` | `/admin/login` |
+| `/`, `/about` (ประวัติ ทิศทาง และโครงสร้างเป็นหัวข้อในหน้าเดียว; URL ย่อยเดิม redirect มาที่หัวข้อ) | `/admin/login` |
 | `/departments`, `/departments/[slug]` | `/admin` dashboard |
 | `/projects`, `/projects/[slug]` | `/admin/projects`, `/admin/projects/[id]` |
 | `/news`, `/news/[slug]`, `/media`, `/reports`, `/search` | `/admin/articles`, `/admin/reports` |
 | `/centers`; โลโก้องค์กรสมาชิกอยู่ที่ `/#network` และ `/members` ส่งต่อไปส่วนนั้น | `/admin/departments`, `/admin/centers`, `/admin/members` |
-| `/participate`, `/participate/donate`, `/participate/membership`, `/contact`, `/privacy`, `/cookies` | `/admin/media`, `/admin/settings`, `/admin/users` |
+| `/participate` (สนับสนุนและสมาชิกองค์กรเป็นหัวข้อในหน้าเดียว; URL ย่อยเดิม redirect มาที่หัวข้อ), `/contact`, `/privacy`, `/cookies` | `/admin/inquiries` กล่องข้อความติดต่อ; `/admin/media`, `/admin/settings`, `/admin/users` ยังเป็นแผน |
 
-เส้นทางเว็บสาธารณะในตารางมีหน้าแล้ว แต่ URL ยังต้องเทียบเว็บเดิมก่อนกำหนด redirect จริง Route group `(site)`/`(admin)` ไม่ปรากฏใน URL. ฝั่ง admin ที่ใช้งานแล้วมี `/admin/login`, `/admin`, `/admin/homepage/slides`, `/admin/homepage/features`, `/admin/articles`, `/admin/projects`, `/admin/reports` และ `/admin/partners` พร้อมหน้าเพิ่ม/แก้ โดยตรวจสิทธิ์ซ้ำที่ data access/action; พรีวิวเฉพาะข่าว/โครงการ โมดูลอื่นในตารางยังเป็นแผน
+เส้นทางเว็บสาธารณะในตารางมีหน้าแล้ว แต่ URL ยังต้องเทียบเว็บเดิมก่อนกำหนด redirect จริง Route group `(site)`/`(admin)` ไม่ปรากฏใน URL. ฝั่ง admin ที่ใช้งานแล้วมี `/admin/login`, `/admin`, `/admin/homepage/slides`, `/admin/homepage/features`, `/admin/articles`, `/admin/projects`, `/admin/reports`, `/admin/partners` และ `/admin/inquiries` โดยตรวจสิทธิ์ซ้ำที่ data access/action; พรีวิวเฉพาะข่าว/โครงการ โมดูลอื่นในตารางยังเป็นแผน
 
 ## ขอบเขตข้อมูล: hardcode กับหลังบ้าน
 

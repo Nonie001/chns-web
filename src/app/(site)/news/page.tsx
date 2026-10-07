@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ArticleCard } from "@/components/site/article-card";
 import { PageHero } from "@/components/site/page-hero";
 import { listDisplayArticles } from "@/features/articles/article-store";
@@ -22,23 +21,27 @@ export default async function NewsPage({ searchParams }: PageProps<"/news">) {
   const sectionTitle = kind === "news" ? "ข่าวประชาสัมพันธ์" : kind === "story" ? "บทความและเรื่องราว" : "เรื่องราวและข้อมูล";
   return (
     <>
-      <PageHero eyebrow="NEWS & STORIES" title="ข่าวสาร" description="ข่าวภารกิจ บทความ และเรื่องราวจากเครือข่าย" imageSrc="/editorial/participation.webp" imageCaption="ภาพประกอบแนวคิดการมีส่วนร่วม" />
+      <PageHero eyebrow="NEWS & STORIES" title="ข่าวสาร" description="ข่าวภารกิจ บทความ และเรื่องราวจากเครือข่าย" imageSrc="/editorial/participation.webp" />
       <section className="section page-section">
         <div className="shell">
           <div className="section-heading">
             <div><p className="eyebrow">LATEST UPDATES</p><h2 className="section-title">{sectionTitle}</h2></div>
           </div>
-          {articles.some((article) => article.isDemo) && <p className="article-demo-banner">ข่าวและบทความด้านล่างเป็นตัวอย่างเพื่อดูรูปแบบเว็บไซต์ ไม่ใช่เหตุการณ์จริงของ CHNS</p>}
-          <nav className="content-tabs" aria-label="ประเภทข่าวสาร">
-            <Link href={query ? `/news?q=${encodeURIComponent(query)}` : "/news"} aria-current={!kind ? "page" : undefined}>ทั้งหมด</Link>
-            <Link href={`/news?kind=news${query ? `&q=${encodeURIComponent(query)}` : ""}`} aria-current={kind === "news" ? "page" : undefined}>ข่าวประชาสัมพันธ์</Link>
-            <Link href={`/news?kind=story${query ? `&q=${encodeURIComponent(query)}` : ""}`} aria-current={kind === "story" ? "page" : undefined}>บทความและเรื่องราว</Link>
-          </nav>
-          <form className="member-filter" action="/news" method="get" role="search">
-            <label htmlFor="news-query">ค้นหาข่าวและบทความ</label>
-            <div><input id="news-query" name="q" type="search" defaultValue={query} placeholder="หัวข้อหรือเนื้อหา" maxLength={80} /><button className="button button--dark" type="submit">ค้นหา</button></div>
-            {kind && <input type="hidden" name="kind" value={kind} />}
-          </form>
+          {articles.length > 0 && <form className="news-filter" action="/news" method="get" role="search">
+            <div>
+              <label htmlFor="news-query">ค้นหาข่าวและบทความ</label>
+              <input id="news-query" name="q" type="search" defaultValue={query} placeholder="ค้นหาจากหัวข้อหรือเนื้อหา" maxLength={80} />
+            </div>
+            <div>
+              <label htmlFor="news-kind">ประเภท</label>
+              <select id="news-kind" name="kind" defaultValue={kind ?? ""}>
+                <option value="">ทั้งหมด</option>
+                <option value="news">ข่าวประชาสัมพันธ์</option>
+                <option value="story">บทความและเรื่องราว</option>
+              </select>
+            </div>
+            <button className="button button--dark" type="submit">ค้นหา</button>
+          </form>}
           {articles.length > 0 && <p className="filter-result-count">พบ {visibleArticles.length} รายการ</p>}
           {visibleArticles.length > 0 ? (
             <div className="feature-card-grid">{visibleArticles.map((article) => <ArticleCard article={article} key={article.slug} />)}</div>

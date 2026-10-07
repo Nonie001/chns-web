@@ -87,6 +87,21 @@ export const departmentProfiles: Record<DepartmentSlug, DepartmentProfile> = {
   },
 };
 
+// ธีมการ์ดฝ่ายงานบนหน้าแรก: สีประจำฝ่าย (แสดงเมื่อชี้เมาส์) และภาพประกอบแนวคิด
+// ภาพทั้งหมดเป็นภาพจำลองเพื่อประกอบการออกแบบ ไม่ใช่ภาพการดำเนินงานจริงของ CHNS
+type DepartmentCardTheme = { accent: string; image: string };
+
+export const departmentCardThemes: Record<DepartmentSlug, DepartmentCardTheme> = {
+  domestic: { accent: "#2e7d46", image: "/editorial/work-areas.webp" },
+  refugees: { accent: "#0f766e", image: "/editorial/home-relief.jpg" },
+  zakat: { accent: "#b45309", image: "/editorial/transparency.webp" },
+  international: { accent: "#1d4ed8", image: "/editorial/coordination.webp" },
+  academic: { accent: "#6d28d9", image: "/editorial/participation.webp" },
+  relations: { accent: "#c2410c", image: "/editorial/home-packing.jpg" },
+  special: { accent: "#475569", image: "/editorial/home-hero.webp" },
+  communications: { accent: "#be185d", image: "/editorial/home-packing.jpg" },
+};
+
 export const regionalCenters = [
   { name: "ภาคเหนือตอนบน", location: "อำเภอเมือง จังหวัดเชียงใหม่" },
   { name: "ภาคตะวันออกเฉียงเหนือตอนบน", location: "อำเภอเมือง จังหวัดหนองคาย" },

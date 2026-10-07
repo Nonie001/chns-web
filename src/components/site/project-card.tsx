@@ -11,7 +11,7 @@ export function ProjectCard({ project }: { project: PublicProject }) {
         {project.imageSrc && <Image src={project.imageSrc} alt={project.imageAlt} fill sizes="(max-width: 720px) 100vw, 33vw" unoptimized />}
       </figure>
       <div className="feature-card__body">
-        <span className="pill">{project.isDemo ? "ตัวอย่าง · " : ""}{project.category}</span>
+        <span className="pill">{project.category}</span>
         <h3>{project.title}</h3>
         <small className="feature-card__meta">{project.location}{department ? ` · ${department.name}` : ""}</small>
         <p>{project.summary}</p>

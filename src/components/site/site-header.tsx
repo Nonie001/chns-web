@@ -15,7 +15,7 @@ export function SiteHeader() {
         <DesktopNav />
         <Link
           className="button button--accent site-header__action"
-          href="/participate"
+          href="/participate#support"
         >
           ร่วมสนับสนุน
         </Link>

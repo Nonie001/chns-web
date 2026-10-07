@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { departments } from "@/content/static/site";
-import { departmentProfiles } from "@/content/static/organization";
-import { SiteBreadcrumbs } from "@/components/site/site-breadcrumbs";
+import { DepartmentCards } from "@/components/site/department-cards";
+
 
 export const metadata: Metadata = {
   title: "งานของเรา | CHNS",
@@ -12,7 +10,6 @@ export const metadata: Metadata = {
 export default function DepartmentsPage() {
   return (
     <>
-      <SiteBreadcrumbs items={[{ label: "งานของเรา" }]} />
       <section className="inner-hero">
         <div className="shell inner-hero__grid">
           <div>
@@ -38,15 +35,7 @@ export default function DepartmentsPage() {
               สำรวจบทบาทและแนวทางดำเนินงานของแต่ละฝ่ายตามข้อมูลของสภาเครือข่าย
             </p>
           </div>
-          <ol className="department-list">
-            {departments.map((department, index) => (
-              <li key={department.slug}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <div><h3><Link href={`/departments/${department.slug}`}>{department.name}</Link></h3><p>{departmentProfiles[department.slug].summary}</p></div>
-                <span aria-hidden="true">↗</span>
-              </li>
-            ))}
-          </ol>
+          <DepartmentCards />
         </div>
       </section>
     </>
