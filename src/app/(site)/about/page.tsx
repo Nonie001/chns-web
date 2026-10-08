@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { MockNotice } from "@/components/site/mock-notice";
-import { organizationDirection, organizationHistory } from "@/content/static/organization";
+import { PhotoSlider } from "@/components/site/photo-slider";
+import { aboutGallery, organizationDirection, organizationHistory } from "@/content/static/organization";
 import { departments, site } from "@/content/static/site";
 
 export const metadata: Metadata = {
@@ -36,14 +38,27 @@ export default function AboutPage() {
         <div>{sections.map((section) => <a href={section.href} key={section.href}>{section.label}</a>)}</div>
       </nav>
 
-      <section className="section story-section" aria-labelledby="about-intro-title">
-        <div className="shell story-section__grid">
-          <p className="eyebrow">WHO WE ARE</p>
-          <div>
+      <section className="section story-section about-story" aria-labelledby="about-intro-title">
+        <div className="shell about-story__grid">
+          <div className="about-story__text">
+            <p className="eyebrow">WHO WE ARE</p>
             <h2 className="section-title" id="about-intro-title">พลังของเครือข่าย<br /><span>เพื่อมนุษยธรรม</span></h2>
             <p>CHNS เป็นสภาเครือข่ายด้านมนุษยธรรมในสำนักจุฬาราชมนตรี มีฝ่ายงานและองค์กรเครือข่ายที่ร่วมกันประสานภารกิจช่วยเหลือผู้ประสบความเดือดร้อนทั้งในและต่างประเทศ</p>
             <p>เว็บไซต์นี้รวบรวมบทบาทของฝ่ายงาน โครงการ ข่าว และรายงานไว้ในโครงสร้างเดียวกัน เพื่อให้ติดตามการทำงานได้ชัดเจนขึ้น</p>
+            <div className="about-story__links">
+              <Link className="button button--dark" href="/departments">ดูฝ่ายงานทั้งหมด <span aria-hidden="true">↗</span></Link>
+              <Link className="text-link" href="/centers">เครือข่ายในพื้นที่ <span aria-hidden="true">↗</span></Link>
+            </div>
           </div>
+          <figure className="about-story__media">
+            <div className="about-story__photo about-story__photo--main">
+              <Image src="/editorial/coordination.webp" alt="" fill sizes="(max-width: 900px) 92vw, 42vw" />
+            </div>
+            <div className="about-story__photo about-story__photo--inset">
+              <Image src="/editorial/home-relief.jpg" alt="" fill sizes="(max-width: 900px) 46vw, 20vw" />
+            </div>
+            <figcaption>ภาพประกอบเพื่อการออกแบบ จะแทนที่ด้วยภาพจริงเมื่อได้รับอนุมัติ</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -55,12 +70,34 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="section about-gallery" aria-labelledby="about-gallery-title">
+        <div className="shell">
+          <div className="about-gallery__head">
+            <div>
+              <p className="eyebrow">OUR WORK IN FOCUS</p>
+              <h2 className="section-title" id="about-gallery-title">ภาพรวมการทำงาน</h2>
+            </div>
+            <p>เลื่อนดูมุมมองการทำงานของเครือข่ายตามพันธกิจและวัตถุประสงค์ที่กำหนดไว้</p>
+          </div>
+          <PhotoSlider slides={aboutGallery} label="ภาพรวมการทำงานของเครือข่าย" />
+          <p className="about-gallery__note">ภาพในส่วนนี้เป็นภาพประกอบเพื่อการออกแบบ ยังไม่ใช่ภาพภารกิจจริงขององค์กร</p>
+        </div>
+      </section>
+
       <section className="section page-section about-section" id="history" aria-labelledby="history-title">
-        <div className="shell policy-page">
-          <p className="eyebrow">OUR BEGINNING</p>
-          <h2 className="section-title" id="history-title">ประวัติองค์กร</h2>
-          <p className="large-copy">สภาเครือข่ายช่วยเหลือด้านมนุษยธรรมเกิดจากความร่วมมือขององค์กรที่มุ่งช่วยเหลือผู้ประสบภัยทั้งในและต่างประเทศ โดยไม่เลือกสัญชาติหรือศาสนา</p>
-          <ol className="organization-timeline">{organizationHistory.map((event) => <li key={event.date}><span>{event.date}</span><div><h3>{event.title}</h3><p>{event.body}</p></div></li>)}</ol>
+        <div className="shell about-history">
+          <div className="about-history__intro">
+            <p className="eyebrow">OUR BEGINNING</p>
+            <h2 className="section-title" id="history-title">ประวัติองค์กร</h2>
+            <p className="large-copy">สภาเครือข่ายช่วยเหลือด้านมนุษยธรรมเกิดจากความร่วมมือขององค์กรที่มุ่งช่วยเหลือผู้ประสบภัยทั้งในและต่างประเทศ โดยไม่เลือกสัญชาติหรือศาสนา</p>
+            <ol className="organization-timeline">{organizationHistory.map((event) => <li key={event.date}><span>{event.date}</span><div><h3>{event.title}</h3><p>{event.body}</p></div></li>)}</ol>
+          </div>
+          <figure className="about-history__media">
+            <div className="about-history__photo">
+              <Image src="/editorial/home-hero.webp" alt="" fill sizes="(max-width: 1000px) 92vw, 34vw" />
+            </div>
+            <figcaption>ภาพประกอบเพื่อการออกแบบ</figcaption>
+          </figure>
         </div>
       </section>
 

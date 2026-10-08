@@ -1,6 +1,9 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import sharp from "sharp";
+import bundledLogos from "./partner-logo-bundled.json";
 import { downloadStoredFile, uploadStoredFile } from "./supabase-files";
 
 const formats = new Set(["jpeg", "png", "webp"]);
@@ -24,5 +27,13 @@ export async function storePartnerLogo(file: File) {
 
 export async function readPartnerLogo(key: string, admin = false) {
   if (!isPartnerLogoKey(key)) return null;
+  const bundledFile = bundledLogos[key as keyof typeof bundledLogos];
+  if (bundledFile) {
+    try {
+      return await readFile(join(process.cwd(), "assets", "partner-logos", bundledFile));
+    } catch {
+      // A deployment without bundled assets can still read the private Storage object.
+    }
+  }
   return downloadStoredFile("partner-logos", key, admin);
 }

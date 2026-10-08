@@ -31,11 +31,7 @@ export const site = {
     { label: "ฝ่ายของเรา", href: "/departments", children: [
       ...departments.map((department) => ({ label: department.name, href: `/departments/${department.slug}` })),
     ] },
-    { label: "ศูนย์ประสานงาน", href: "/centers", children: [
-      { label: "ศูนย์ระดับภูมิภาค", href: "/centers#regional" },
-      { label: "ศูนย์ระดับจังหวัด", href: "/centers#provincial" },
-      { label: "องค์กรสมาชิก", href: "/#network" },
-    ] },
+    { label: "ศูนย์ประสานงาน", href: "/centers" },
     { label: "ข่าวสาร", href: "/news", children: [
       { label: "วิดีโอและสื่อ", href: "/media" },
       { label: "รายงานและเอกสาร", href: "/reports" },

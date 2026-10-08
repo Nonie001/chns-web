@@ -36,7 +36,7 @@ export function SiteFooter() {
             <Link href="/about#structure">โครงสร้างบริหาร</Link>
             <Link href="/departments">ฝ่ายงาน</Link>
             <Link href="/centers">ศูนย์ประสานงาน</Link>
-            <Link href="/#network">องค์กรสมาชิก</Link>
+            <Link href="/centers#members">องค์กรสมาชิก</Link>
           </nav>
           <nav aria-label="เนื้อหาและบริการ">
             <h2>สำรวจเว็บไซต์</h2>

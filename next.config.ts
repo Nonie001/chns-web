@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  outputFileTracingIncludes: {
+    "/api/partner-logos/*": ["./assets/partner-logos/*.webp"],
+  },
   async redirects() {
     return [
       { source: "/about/history", destination: "/about#history", permanent: true },

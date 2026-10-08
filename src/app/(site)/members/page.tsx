@@ -1,5 +1,5 @@
 import { permanentRedirect } from "next/navigation";
 
 export default function MembersPage() {
-  permanentRedirect("/#network");
+  permanentRedirect("/centers#members");
 }

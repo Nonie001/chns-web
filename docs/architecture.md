@@ -65,7 +65,7 @@
 | `/departments`, `/departments/[slug]` | `/admin` dashboard |
 | `/projects`, `/projects/[slug]` | `/admin/projects`, `/admin/projects/[id]` |
 | `/news`, `/news/[slug]`, `/media`, `/reports`, `/search` | `/admin/articles`, `/admin/reports` |
-| `/centers`; โลโก้องค์กรสมาชิกอยู่ที่ `/#network` และ `/members` ส่งต่อไปส่วนนั้น | `/admin/departments`, `/admin/centers`, `/admin/members` |
+| `/centers` รวมศูนย์ภูมิภาค ศูนย์จังหวัด และองค์กรสมาชิก; `/members` ส่งต่อไป `/centers#members` โดยหน้าแรกยังแสดงโลโก้ที่ `/#network` | `/admin/departments`, `/admin/centers`, `/admin/members` |
 | `/participate` (สนับสนุนและสมาชิกองค์กรเป็นหัวข้อในหน้าเดียว; URL ย่อยเดิม redirect มาที่หัวข้อ), `/contact`, `/privacy`, `/cookies` | `/admin/inquiries` กล่องข้อความติดต่อ; `/admin/media`, `/admin/settings`, `/admin/users` ยังเป็นแผน |
 
 เส้นทางเว็บสาธารณะในตารางมีหน้าแล้ว แต่ URL ยังต้องเทียบเว็บเดิมก่อนกำหนด redirect จริง Route group `(site)`/`(admin)` ไม่ปรากฏใน URL. ฝั่ง admin ที่ใช้งานแล้วมี `/admin/login`, `/admin`, `/admin/homepage/slides`, `/admin/homepage/features`, `/admin/articles`, `/admin/projects`, `/admin/reports`, `/admin/partners` และ `/admin/inquiries` โดยตรวจสิทธิ์ซ้ำที่ data access/action; พรีวิวเฉพาะข่าว/โครงการ โมดูลอื่นในตารางยังเป็นแผน

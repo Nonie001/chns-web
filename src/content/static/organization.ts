@@ -102,19 +102,28 @@ export const departmentCardThemes: Record<DepartmentSlug, DepartmentCardTheme> =
   communications: { accent: "#be185d", image: "/editorial/home-packing.jpg" },
 };
 
+// `latitude`/`longitude` ใช้พิกัดโดยประมาณของอำเภอที่ตั้งศูนย์ เพื่อวางหมุดบนแผนที่เท่านั้น ไม่ใช่ที่อยู่สำนักงาน
 export const regionalCenters = [
-  { name: "ภาคเหนือตอนบน", location: "อำเภอเมือง จังหวัดเชียงใหม่" },
-  { name: "ภาคตะวันออกเฉียงเหนือตอนบน", location: "อำเภอเมือง จังหวัดหนองคาย" },
-  { name: "ภาคตะวันออกเฉียงเหนือตอนกลาง", location: "อำเภอเชียงยืน จังหวัดมหาสารคาม" },
-  { name: "ภาคเหนือตอนล่าง", location: "อำเภอแม่สอด จังหวัดตาก" },
-  { name: "ภาคกลาง", location: "เขตลาดพร้าว กรุงเทพมหานคร" },
-  { name: "ภาคใต้ฝั่งอันดามัน", location: "อำเภอเมือง จังหวัดกระบี่" },
-  { name: "ภาคตะวันออกเฉียงเหนือตอนล่าง", location: "อำเภอเมือง จังหวัดศรีสะเกษ" },
-  { name: "ภาคตะวันออก", location: "อำเภอเมือง จังหวัดตราด" },
-  { name: "ภาคใต้ตอนบน", location: "อำเภอเมือง จังหวัดนครศรีธรรมราช" },
-  { name: "ภาคใต้ตอนกลาง", location: "อำเภอหาดใหญ่ จังหวัดสงขลา", note: "เอกสารต้นทางระบุเป็นตัวอย่าง" },
-  { name: "ภาคใต้ตอนล่าง", location: "อำเภอเมือง จังหวัดยะลา" },
+  { name: "ภาคเหนือตอนบน", location: "อำเภอเมือง จังหวัดเชียงใหม่", latitude: 18.7883, longitude: 98.9853 },
+  { name: "ภาคตะวันออกเฉียงเหนือตอนบน", location: "อำเภอเมือง จังหวัดหนองคาย", latitude: 17.8782, longitude: 102.7412 },
+  { name: "ภาคตะวันออกเฉียงเหนือตอนกลาง", location: "อำเภอเชียงยืน จังหวัดมหาสารคาม", latitude: 16.4049, longitude: 103.0902 },
+  { name: "ภาคเหนือตอนล่าง", location: "อำเภอแม่สอด จังหวัดตาก", latitude: 16.7167, longitude: 98.5667 },
+  { name: "ภาคกลาง", location: "เขตลาดพร้าว กรุงเทพมหานคร", latitude: 13.8, longitude: 100.6 },
+  { name: "ภาคใต้ฝั่งอันดามัน", location: "อำเภอเมือง จังหวัดกระบี่", latitude: 8.0863, longitude: 98.9063 },
+  { name: "ภาคตะวันออกเฉียงเหนือตอนล่าง", location: "อำเภอเมือง จังหวัดศรีสะเกษ", latitude: 15.1186, longitude: 104.322 },
+  { name: "ภาคตะวันออก", location: "อำเภอเมือง จังหวัดตราด", latitude: 12.2436, longitude: 102.515 },
+  { name: "ภาคใต้ตอนบน", location: "อำเภอเมือง จังหวัดนครศรีธรรมราช", latitude: 8.4304, longitude: 99.9631 },
+  { name: "ภาคใต้ตอนกลาง", location: "อำเภอหาดใหญ่ จังหวัดสงขลา", latitude: 7.0086, longitude: 100.4747, note: "เอกสารต้นทางระบุเป็นตัวอย่าง" },
+  { name: "ภาคใต้ตอนล่าง", location: "อำเภอเมือง จังหวัดยะลา", latitude: 6.541, longitude: 101.28 },
 ] as const;
+
+export type RegionalCenter = {
+  name: string;
+  location: string;
+  latitude: number;
+  longitude: number;
+  note?: string;
+};
 
 export const organizationContact = {
   address: "45 หมู่ที่ 3 ถนนคลองเก้า แขวงคลองสิบ เขตหนองจอก กรุงเทพมหานคร 10530",
@@ -132,3 +141,38 @@ export const organizationContact = {
     { label: "Threads", href: "https://www.threads.com/@chnshumanity.thailand" },
   ],
 } as const;
+
+// ภาพในชุดนี้ยังเป็นไฟล์ประกอบใน `public/editorial/` ตาม docs/photo-requirements.md
+// คำบรรยายอ้างอิงพันธกิจและวัตถุประสงค์ที่อนุมัติแล้วเท่านั้น ไม่ระบุเหตุการณ์หรือบุคคลในภาพ
+export const aboutGallery = [
+  {
+    src: "/editorial/coordination.webp",
+    title: "ประสานเครือข่าย",
+    caption: "รวบรวมองค์กรเครือข่ายเพื่อสร้างความเป็นเอกภาพในการทำงานด้านมนุษยธรรม",
+  },
+  {
+    src: "/editorial/home-relief.jpg",
+    title: "ช่วยเหลือผู้ประสบภัย",
+    caption: "ช่วยเหลือผู้ประสบภัยพิบัติให้ได้รับความปลอดภัยและมีความสงบสุขอย่างยั่งยืน",
+  },
+  {
+    src: "/editorial/home-packing.jpg",
+    title: "ระดมทรัพยากร",
+    caption: "ระดมทรัพยากรเพื่อช่วยเหลือผู้ประสบภัยทั้งในประเทศและต่างประเทศ",
+  },
+  {
+    src: "/editorial/work-areas.webp",
+    title: "ฝ่ายงาน 8 ฝ่าย",
+    caption: "แบ่งบทบาทตามฝ่ายงานเพื่อดูแลภารกิจเฉพาะด้านของเครือข่าย",
+  },
+  {
+    src: "/editorial/participation.webp",
+    title: "พัฒนาคนทำงาน",
+    caption: "ผลิตและพัฒนาศักยภาพคนทำงานด้านมนุษยธรรม",
+  },
+  {
+    src: "/editorial/transparency.webp",
+    title: "ศูนย์ข้อมูลและการเรียนรู้",
+    caption: "เป็นศูนย์ประสานงาน ศูนย์ข้อมูล และศูนย์ฝึกอบรมเพื่อพัฒนาองค์กรด้านมนุษยธรรม",
+  },
+] as const;

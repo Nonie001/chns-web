@@ -23,7 +23,7 @@ function input(form: FormData): PartnerInput {
     logoAlt: field(form, "logoAlt", 180), logoCredit: field(form, "logoCredit", 180),
     rightsConfirmed: form.get("rightsConfirmed") === "on" };
 }
-function refresh() { revalidatePath("/"); revalidatePath("/members"); revalidatePath("/admin/partners"); }
+function refresh() { revalidatePath("/"); revalidatePath("/centers"); revalidatePath("/members"); revalidatePath("/admin/partners"); }
 
 export async function savePartnerAction(_state: PartnerFormState, form: FormData): Promise<PartnerFormState> {
   await assertAdmin();

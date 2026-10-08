@@ -89,7 +89,7 @@ export default async function ParticipatePage() {
           </div>
           <div className="page-actions">
             <a className="button button--dark" href={`mailto:${organizationContact.email}?subject=${encodeURIComponent("สอบถามการสมัครสมาชิกองค์กร CHNS")}`}>สอบถามการสมัครสมาชิก <span aria-hidden="true">↗</span></a>
-            <Link className="text-link" href="/#network">ดูองค์กรสมาชิก <span aria-hidden="true">↗</span></Link>
+            <Link className="text-link" href="/centers#members">ดูองค์กรสมาชิก <span aria-hidden="true">↗</span></Link>
           </div>
         </div>
       </section>

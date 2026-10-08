@@ -2,23 +2,24 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { PageHero } from "@/components/site/page-hero";
+import { PartnerLogoGrid } from "@/components/site/partner-logo-grid";
+import { RegionalCenterMap } from "@/components/site/regional-center-map";
 import { regionalCenters } from "@/content/static/organization";
+import { listPublishedPartners } from "@/features/partners/partner-store";
 
 export const metadata: Metadata = {
   title: "ศูนย์ประสานงาน | CHNS",
-  description: "โครงหน้าศูนย์ประสานงานระดับภูมิภาคและจังหวัด",
+  description: "ศูนย์ประสานงานระดับภูมิภาค จังหวัด และองค์กรสมาชิกของ CHNS",
 };
 
-export default async function CentersPage({ searchParams }: PageProps<"/centers">) {
-  const params = await searchParams;
-  const query = (typeof params.q === "string" ? params.q : "").trim().slice(0, 80);
-  const centers = query ? regionalCenters.filter((center) => `${center.name} ${center.location}`.toLocaleLowerCase("th").includes(query.toLocaleLowerCase("th"))) : regionalCenters;
+export default async function CentersPage() {
+  const partners = await listPublishedPartners();
   return (
     <>
       <PageHero
         eyebrow="OUR NETWORK"
         title="ศูนย์ประสานงาน"
-        description="รายชื่อศูนย์ประสานงานระดับภูมิภาคและข้อมูลพื้นที่ตั้งตามเอกสารของ CHNS"
+        description="ศูนย์ประสานงานและองค์กรสมาชิกที่ร่วมขับเคลื่อนงานด้านมนุษยธรรม"
       />
       <section className="section page-section">
         <div className="shell">
@@ -33,7 +34,7 @@ export default async function CentersPage({ searchParams }: PageProps<"/centers"
               <p className="large-copy">
                 ศูนย์ประสานงานเชื่อมองค์กรและผู้ร่วมงานในแต่ละพื้นที่ เพื่อให้การประสานภารกิจด้านมนุษยธรรมเข้าถึงพื้นที่ต่าง ๆ
               </p>
-              <Link className="text-link" href="/#network">
+              <Link className="text-link" href="#members">
                 ดูองค์กรสมาชิก <span aria-hidden="true">↗</span>
               </Link>
             </div>
@@ -43,7 +44,7 @@ export default async function CentersPage({ searchParams }: PageProps<"/centers"
             <section id="regional">
               <p className="eyebrow">REGIONAL</p>
               <h2>ศูนย์ประสานงานระดับภูมิภาค</h2>
-              <p>ค้นหาจากชื่อภูมิภาคหรือจังหวัดที่ตั้งศูนย์</p>
+              <p>ดูรายชื่อศูนย์และตำแหน่งที่ตั้งบนแผนที่</p>
             </section>
             <section id="provincial">
               <p className="eyebrow">PROVINCIAL</p>
@@ -51,14 +52,16 @@ export default async function CentersPage({ searchParams }: PageProps<"/centers"
               <p>เอกสารที่ได้รับยังไม่มีรายชื่อศูนย์ระดับจังหวัด จึงจะแสดงเมื่อมีข้อมูลเพิ่ม</p>
             </section>
           </div>
-          <form className="member-filter center-filter" action="/centers" method="get" role="search">
-            <label htmlFor="center-query">ค้นหาศูนย์ประสานงาน</label>
-            <div><input id="center-query" name="q" type="search" defaultValue={query} placeholder="เช่น ภาคใต้ หรือ เชียงใหม่" maxLength={80} /><button className="button button--dark" type="submit">ค้นหา</button></div>
-          </form>
-          <p className="filter-result-count">พบ {centers.length} ศูนย์ภูมิภาค</p>
-          {centers.length > 0 ? <ol className="regional-center-grid">{centers.map((center) => <li key={center.name}>
-            <span>ศูนย์ประสานงานประจำ{center.name}</span><strong>{center.location}</strong>{"note" in center && <small>{center.note}</small>}
-          </li>)}</ol> : <p className="content-empty">ไม่พบศูนย์ที่ค้นหา</p>}
+          <RegionalCenterMap centers={regionalCenters} />
+        </div>
+      </section>
+      <section className="section center-members" id="members" aria-labelledby="center-members-title">
+        <div className="shell">
+          <div className="home-heading">
+            <div><p className="eyebrow">PARTNER NETWORK</p><h2 id="center-members-title" className="section-title">องค์กรสมาชิกและภาคีเครือข่าย</h2></div>
+            {partners.length > 0 && <p className="home-network__count">{partners.length} องค์กรที่เผยแพร่แล้ว</p>}
+          </div>
+          {partners.length > 0 ? <PartnerLogoGrid partners={partners} /> : <p className="content-empty">ยังไม่มีโลโก้ภาคีที่เผยแพร่</p>}
         </div>
       </section>
     </>
