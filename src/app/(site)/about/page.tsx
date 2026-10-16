@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MockNotice } from "@/components/site/mock-notice";
@@ -23,7 +24,7 @@ const sections = [
 export default function AboutPage() {
   return (
     <>
-      <section className="inner-hero">
+      <section className="inner-hero" style={{ "--hero-image": "url(/editorial/chns/page-about.webp)" } as CSSProperties}>
         <div className="shell inner-hero__grid">
           <div>
             <p className="eyebrow eyebrow--light">ABOUT CHNS</p>
@@ -52,12 +53,11 @@ export default function AboutPage() {
           </div>
           <figure className="about-story__media">
             <div className="about-story__photo about-story__photo--main">
-              <Image src="/editorial/coordination.webp" alt="" fill sizes="(max-width: 900px) 92vw, 42vw" />
+              <Image src="/editorial/chns/about-main.webp" alt="กลุ่มผู้ร่วมงานส่งมอบสิ่งของช่วยเหลือ" fill sizes="(max-width: 900px) 92vw, 42vw" />
             </div>
             <div className="about-story__photo about-story__photo--inset">
-              <Image src="/editorial/home-relief.jpg" alt="" fill sizes="(max-width: 900px) 46vw, 20vw" />
+              <Image src="/editorial/chns/about-inset.webp" alt="กลุ่มเครือข่ายร่วมถ่ายภาพกิจกรรม" fill sizes="(max-width: 900px) 46vw, 20vw" />
             </div>
-            <figcaption>ภาพประกอบเพื่อการออกแบบ จะแทนที่ด้วยภาพจริงเมื่อได้รับอนุมัติ</figcaption>
           </figure>
         </div>
       </section>
@@ -80,7 +80,7 @@ export default function AboutPage() {
             <p>เลื่อนดูมุมมองการทำงานของเครือข่ายตามพันธกิจและวัตถุประสงค์ที่กำหนดไว้</p>
           </div>
           <PhotoSlider slides={aboutGallery} label="ภาพรวมการทำงานของเครือข่าย" />
-          <p className="about-gallery__note">ภาพในส่วนนี้เป็นภาพประกอบเพื่อการออกแบบ ยังไม่ใช่ภาพภารกิจจริงขององค์กร</p>
+          <p className="about-gallery__note">ภาพจากชุดสื่อที่ CHNS ส่งให้ประกอบเว็บไซต์</p>
         </div>
       </section>
 

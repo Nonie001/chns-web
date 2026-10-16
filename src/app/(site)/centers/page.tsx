@@ -20,6 +20,7 @@ export default async function CentersPage() {
         eyebrow="OUR NETWORK"
         title="ศูนย์ประสานงาน"
         description="ศูนย์ประสานงานและองค์กรสมาชิกที่ร่วมขับเคลื่อนงานด้านมนุษยธรรม"
+        imageSrc="/editorial/chns/page-centers.webp"
       />
       <section className="section page-section">
         <div className="shell">
@@ -38,7 +39,7 @@ export default async function CentersPage() {
                 ดูองค์กรสมาชิก <span aria-hidden="true">↗</span>
               </Link>
             </div>
-            <Image className="editorial-photo" src="/editorial/coordination.webp" width={960} height={640} alt="" />
+            <Image className="editorial-photo" src="/editorial/chns/centers-body.webp" width={1400} height={934} alt="กลุ่มเครือข่ายช่วยเหลือผู้ประสบอุทกภัย" />
           </div>
           <div className="center-levels">
             <section id="regional">

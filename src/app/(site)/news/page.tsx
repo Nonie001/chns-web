@@ -21,7 +21,7 @@ export default async function NewsPage({ searchParams }: PageProps<"/news">) {
   const sectionTitle = kind === "news" ? "ข่าวประชาสัมพันธ์" : kind === "story" ? "บทความและเรื่องราว" : "เรื่องราวและข้อมูล";
   return (
     <>
-      <PageHero eyebrow="NEWS & STORIES" title="ข่าวสาร" description="ข่าวภารกิจ บทความ และเรื่องราวจากเครือข่าย" imageSrc="/editorial/participation.webp" />
+      <PageHero eyebrow="NEWS & STORIES" title="ข่าวสาร" description="ข่าวภารกิจ บทความ และเรื่องราวจากเครือข่าย" imageSrc="/editorial/chns/page-news.webp" />
       <section className="section page-section">
         <div className="shell">
           <div className="section-heading">

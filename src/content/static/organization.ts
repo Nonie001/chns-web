@@ -142,37 +142,36 @@ export const organizationContact = {
   ],
 } as const;
 
-// ภาพในชุดนี้ยังเป็นไฟล์ประกอบใน `public/editorial/` ตาม docs/photo-requirements.md
-// คำบรรยายอ้างอิงพันธกิจและวัตถุประสงค์ที่อนุมัติแล้วเท่านั้น ไม่ระบุเหตุการณ์หรือบุคคลในภาพ
+// ภาพจากชุดสื่อ CHNS ที่ผู้ใช้ส่งให้ในเดือนตุลาคม 2569; ไม่ระบุชื่อบุคคล พื้นที่ หรือวันที่ที่ยังไม่ได้ยืนยัน
 export const aboutGallery = [
   {
-    src: "/editorial/coordination.webp",
+    src: "/editorial/chns/about-main.webp",
     title: "ประสานเครือข่าย",
-    caption: "รวบรวมองค์กรเครือข่ายเพื่อสร้างความเป็นเอกภาพในการทำงานด้านมนุษยธรรม",
+    caption: "ผู้ร่วมงานจากหลายกลุ่มส่งมอบสิ่งของร่วมกัน",
   },
   {
-    src: "/editorial/home-relief.jpg",
+    src: "/editorial/chns/centers-body.webp",
     title: "ช่วยเหลือผู้ประสบภัย",
-    caption: "ช่วยเหลือผู้ประสบภัยพิบัติให้ได้รับความปลอดภัยและมีความสงบสุขอย่างยั่งยืน",
+    caption: "เครือข่ายในพื้นที่ร่วมกิจกรรมช่วยเหลืออุทกภัย",
   },
   {
-    src: "/editorial/home-packing.jpg",
-    title: "ระดมทรัพยากร",
-    caption: "ระดมทรัพยากรเพื่อช่วยเหลือผู้ประสบภัยทั้งในประเทศและต่างประเทศ",
+    src: "/editorial/chns/gallery-family.webp",
+    title: "ส่งต่ออาหาร",
+    caption: "ผู้รับความช่วยเหลือกับสิ่งของด้านอาหาร",
   },
   {
-    src: "/editorial/work-areas.webp",
-    title: "ฝ่ายงาน 8 ฝ่าย",
-    caption: "แบ่งบทบาทตามฝ่ายงานเพื่อดูแลภารกิจเฉพาะด้านของเครือข่าย",
+    src: "/editorial/chns/gallery-field.webp",
+    title: "ลงพื้นที่ช่วยเหลือ",
+    caption: "อาสาสมัครส่งมอบสิ่งของแก่เด็กในพื้นที่",
   },
   {
-    src: "/editorial/participation.webp",
-    title: "พัฒนาคนทำงาน",
-    caption: "ผลิตและพัฒนาศักยภาพคนทำงานด้านมนุษยธรรม",
+    src: "/editorial/chns/gallery-group.webp",
+    title: "ร่วมมือกับชุมชน",
+    caption: "ทีมงานและคนในชุมชนร่วมถ่ายภาพกับสิ่งของช่วยเหลือ",
   },
   {
-    src: "/editorial/transparency.webp",
-    title: "ศูนย์ข้อมูลและการเรียนรู้",
-    caption: "เป็นศูนย์ประสานงาน ศูนย์ข้อมูล และศูนย์ฝึกอบรมเพื่อพัฒนาองค์กรด้านมนุษยธรรม",
+    src: "/editorial/chns/gallery-winter.webp",
+    title: "แบ่งปันเครื่องนุ่งห่ม",
+    caption: "ผู้ร่วมงานและเด็กในพื้นที่รับสิ่งของ",
   },
 ] as const;

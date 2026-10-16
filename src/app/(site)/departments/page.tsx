@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import { DepartmentCards } from "@/components/site/department-cards";
 
 
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 export default function DepartmentsPage() {
   return (
     <>
-      <section className="inner-hero">
+      <section className="inner-hero" style={{ "--hero-image": "url(/editorial/chns/page-departments.webp)" } as CSSProperties}>
         <div className="shell inner-hero__grid">
           <div>
             <p className="eyebrow eyebrow--light">OUR WORK</p>

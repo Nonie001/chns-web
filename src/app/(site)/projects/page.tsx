@@ -30,7 +30,7 @@ export default async function ProjectsPage({ searchParams }: PageProps<"/project
         eyebrow="PROJECTS & MISSIONS"
         title="โครงการและภารกิจ"
         description="พื้นที่ติดตามเป้าหมาย ความคืบหน้า และผลลัพธ์ของงานด้านมนุษยธรรม"
-        imageSrc="/editorial/work-areas.webp"
+        imageSrc="/editorial/chns/page-projects.webp"
       />
       <section className="section page-section">
         <div className="shell">

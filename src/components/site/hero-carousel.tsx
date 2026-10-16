@@ -45,16 +45,6 @@ export function HeroCarousel({ slides }: { slides: HeroCarouselItem[] }) {
             key={slide.id}
             aria-hidden={index !== active}
           >
-            <Image
-              className="hero-slider__backdrop"
-              src={slide.imageSrc}
-              alt=""
-              fill
-              sizes="100vw"
-              priority={index === 0}
-              unoptimized={slide.imageSrc.startsWith("/api/")}
-              aria-hidden="true"
-            />
             <picture>
               {slide.mobileImageSrc && (
                 <source media="(max-width: 700px)" srcSet={slide.mobileImageSrc} />

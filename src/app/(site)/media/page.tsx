@@ -31,6 +31,7 @@ export default async function MediaPage() {
         eyebrow="PHOTO & VIDEO"
         title="ภาพและวิดีโอ"
         description="ภาพประกอบจากข่าวและโครงการที่ได้รับอนุมัติให้เผยแพร่ พร้อมแหล่งที่มา"
+        imageSrc="/editorial/chns/page-news.webp"
       />
       <section className="section page-section">
         <div className="shell">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MockNotice } from "@/components/site/mock-notice";
@@ -18,7 +19,7 @@ export default async function ParticipatePage() {
 
   return (
     <>
-      <section className="inner-hero">
+      <section className="inner-hero" style={{ "--hero-image": "url(/editorial/chns/page-participate.webp)" } as CSSProperties}>
         <div className="shell inner-hero__grid">
           <div>
             <p className="eyebrow eyebrow--light">GET INVOLVED</p>
@@ -63,7 +64,7 @@ export default async function ParticipatePage() {
             </ol>
             <Link className="button button--dark" href="/departments">สำรวจงานของเรา <span aria-hidden="true">↗</span></Link>
           </div>
-          <Image className="editorial-photo" src="/editorial/participation.webp" width={960} height={640} alt="" />
+          <Image className="editorial-photo" src="/editorial/chns/about-main.webp" width={1400} height={934} alt="ทีมงานส่งมอบสิ่งของช่วยเหลือ" />
         </div>
       </section>
 

@@ -33,19 +33,17 @@ export default async function HomePage() {
   const featuredArticle = articles.find((article) => article.slug === featureSlugs.article) ?? articles[0];
   const latestArticles = featuredArticle ? [featuredArticle, ...articles.filter((article) => article.slug !== featuredArticle.slug)].slice(0, 6) : [];
   const latestReports = [...reports].sort((a, b) => b.year - a.year).slice(0, 3);
-  const slides: HeroCarouselItem[] = publishedSlides;
+  const fallbackSlides: HeroCarouselItem[] = [
+    { id: "chns-field-1", imageSrc: "/editorial/chns/hero-1.webp", mobileImageSrc: "/editorial/chns/hero-mobile-1.webp", imageAlt: "ทีมงานจัดเตรียมอาหารในพื้นที่ภารกิจ" },
+    { id: "chns-field-2", imageSrc: "/editorial/chns/hero-2-feed-world.webp", mobileImageSrc: "/editorial/chns/hero-mobile-2.webp", imageAlt: "ภาพประกอบการรณรงค์และการส่งต่ออาหารเพื่อช่วยเหลือผู้เดือดร้อน" },
+    { id: "chns-field-3", imageSrc: "/editorial/chns/hero-3.webp", mobileImageSrc: "/editorial/chns/hero-mobile-3.webp", imageAlt: "ทีมงานส่งมอบสิ่งของช่วยเหลือ" },
+  ];
+  const slides: HeroCarouselItem[] = publishedSlides.length > 0 ? publishedSlides : fallbackSlides;
 
   return (
     <>
       <h1 className="sr-only">{site.officialName}</h1>
-      {slides.length > 0 ? (
-        <HeroCarousel slides={slides} />
-      ) : (
-        <figure className="home-hero-still">
-          <Image src="/editorial/home-relief.jpg" alt="" fill priority sizes="100vw" />
-          <figcaption>ภาพจำลองเพื่อประกอบการออกแบบ</figcaption>
-        </figure>
-      )}
+      <HeroCarousel slides={slides} />
       <div className="home-introbar"><div className="shell home-introbar__inner">
         <p className="home-introbar__name">{site.officialName}</p>
         <nav className="home-introbar__links" aria-label="ลิงก์ด่วน">
@@ -104,7 +102,7 @@ export default async function HomePage() {
       <section className="section home-process" aria-labelledby="home-process-title">
         <div className="shell home-process__layout">
           <div className="home-process__intro"><p className="eyebrow">HOW WE WORK</p><h2 id="home-process-title" className="section-title">จากการประสานงาน<br /><span>สู่การลงมือร่วมกัน</span></h2><p>งานด้านมนุษยธรรมต้องอาศัยหลายฝ่าย CHNS จึงเชื่อมบทบาทของหน่วยงานและเครือข่ายให้ทำงานไปในทิศทางเดียวกัน</p><Link className="text-link" href="/about">รู้จักการทำงานของเรา ↗</Link></div>
-          <figure className="home-process__image"><Image src="/editorial/home-packing.jpg" alt="" fill sizes="(max-width: 800px) 100vw, 48vw" /><figcaption>ภาพจำลองเพื่อประกอบการออกแบบ</figcaption></figure>
+          <figure className="home-process__image"><div className="home-process__brush"><Image src="/editorial/chns/home-process.webp" alt="การจัดเตรียมถุงยังชีพเพื่อส่งมอบ" fill sizes="(max-width: 800px) 100vw, 48vw" /></div></figure>
         </div>
       </section>
 
