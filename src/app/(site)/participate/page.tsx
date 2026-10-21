@@ -62,7 +62,7 @@ export default async function ParticipatePage() {
               <li><strong>ตรวจช่องทาง</strong><span>ใช้ช่องทางที่ CHNS แสดงและรับรองบนเว็บไซต์เมื่อเปิดให้บริการ</span></li>
               <li><strong>ติดตามผล</strong><span>ดูความคืบหน้าและหลักฐานที่เผยแพร่ได้</span></li>
             </ol>
-            <Link className="button button--dark" href="/departments">สำรวจงานของเรา <span aria-hidden="true">↗</span></Link>
+            <Link className="button button--dark" href="/projects">สำรวจงานของเรา <span aria-hidden="true">↗</span></Link>
           </div>
           <Image className="editorial-photo" src="/editorial/chns/about-main.webp" width={1400} height={934} alt="ทีมงานส่งมอบสิ่งของช่วยเหลือ" />
         </div>

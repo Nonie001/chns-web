@@ -66,7 +66,6 @@ export async function saveProjectAction(_state: ProjectFormState, form: FormData
     }
     revalidatePath(`/projects/${input.slug}`);
     revalidatePath("/projects");
-    revalidatePath("/search");
     revalidatePath("/");
     revalidatePath("/admin/projects");
   } catch (error) {
@@ -90,7 +89,6 @@ export async function changeProjectStatusAction(form: FormData) {
   }
   revalidatePath(`/projects/${project.slug}`);
   revalidatePath("/projects");
-  revalidatePath("/search");
   revalidatePath("/");
   revalidatePath("/admin/projects");
 }

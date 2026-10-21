@@ -22,11 +22,12 @@
 │   │   ├── (site)/layout.tsx          # Header, Footer
 │   │   ├── (site)/page.tsx            # route /
 │   │   ├── (site)/about/page.tsx      # ประวัติ ทิศทาง โครงสร้างในหน้าเดียว
-│   │   ├── (site)/departments/...     # รายชื่อและหน้าแต่ละฝ่าย
+│   │   ├── (site)/departments/[slug]  # หน้าแต่ละฝ่าย; รายชื่ออยู่ในหน้าเกี่ยวกับเรา
 │   │   ├── (site)/projects/...        # รายชื่อและหน้าแต่ละโครงการ
 │   │   ├── (site)/news/...            # รายชื่อและหน้าบทความ
-│   │   ├── (site)/media|reports|centers|members|search/...
+│   │   ├── (site)/media|reports|centers|members/...
 │   │   ├── (site)/participate/page.tsx # สนับสนุนและสมาชิกองค์กรในหน้าเดียว
+│   │   ├── (site)/zakat/page.tsx     # หน้าสถานะเครื่องมือคำนวณซะกาต
 │   │   ├── (site)/contact/page.tsx      # ช่องทางติดต่อและแบบฟอร์มส่งเรื่อง
 │   │   ├── (admin)/admin/            # login และโมดูลคอนเทนต์ที่ตรวจ session
 │   │   └── api/                      # เสิร์ฟภาพ/PDF ตามสถานะเผยแพร่/สิทธิ์
@@ -62,11 +63,11 @@
 | เว็บสาธารณะ `(site)` | หลังบ้าน `(admin)/admin` |
 | --- | --- |
 | `/`, `/about` (ประวัติ ทิศทาง และโครงสร้างเป็นหัวข้อในหน้าเดียว; URL ย่อยเดิม redirect มาที่หัวข้อ) | `/admin/login` |
-| `/departments`, `/departments/[slug]` | `/admin` dashboard |
+| `/departments/[slug]` (รายการฝ่ายอยู่ที่ `/about#structure`; `/departments` redirect ไปที่นั่น) | `/admin` dashboard |
 | `/projects`, `/projects/[slug]` | `/admin/projects`, `/admin/projects/[id]` |
-| `/news`, `/news/[slug]`, `/media`, `/reports`, `/search` | `/admin/articles`, `/admin/reports` |
+| `/news`, `/news/[slug]`, `/media`, `/reports` | `/admin/articles`, `/admin/reports` |
 | `/centers` รวมศูนย์ภูมิภาค ศูนย์จังหวัด และองค์กรสมาชิก; `/members` ส่งต่อไป `/centers#members` โดยหน้าแรกยังแสดงโลโก้ที่ `/#network` | `/admin/departments`, `/admin/centers`, `/admin/members` |
-| `/participate` (สนับสนุนและสมาชิกองค์กรเป็นหัวข้อในหน้าเดียว; URL ย่อยเดิม redirect มาที่หัวข้อ), `/contact`, `/privacy`, `/cookies` | `/admin/inquiries` กล่องข้อความติดต่อ; `/admin/media`, `/admin/settings`, `/admin/users` ยังเป็นแผน |
+| `/participate` (สนับสนุนและสมาชิกองค์กรเป็นหัวข้อในหน้าเดียว; URL ย่อยเดิม redirect มาที่หัวข้อ), `/zakat` (สถานะกำลังพัฒนา), `/contact`, `/privacy`, `/cookies` | `/admin/inquiries` กล่องข้อความติดต่อ; `/admin/media`, `/admin/settings`, `/admin/users` ยังเป็นแผน |
 
 เส้นทางเว็บสาธารณะในตารางมีหน้าแล้ว แต่ URL ยังต้องเทียบเว็บเดิมก่อนกำหนด redirect จริง Route group `(site)`/`(admin)` ไม่ปรากฏใน URL. ฝั่ง admin ที่ใช้งานแล้วมี `/admin/login`, `/admin`, `/admin/homepage/slides`, `/admin/homepage/features`, `/admin/articles`, `/admin/projects`, `/admin/reports`, `/admin/partners` และ `/admin/inquiries` โดยตรวจสิทธิ์ซ้ำที่ data access/action; พรีวิวเฉพาะข่าว/โครงการ โมดูลอื่นในตารางยังเป็นแผน
 
@@ -87,7 +88,7 @@
 2. **การเข้าถึงข้อมูล**: Server Component อ่านผ่าน server-only data access layer; public query คืนรายการ `published` และข้อยกเว้นเฉพาะข่าว/โครงการตัวอย่างที่เจ้าของเว็บขอให้เปิดด้วย `showcase_visible=true`; admin query ตรวจ session + role + ขอบเขตฝ่ายก่อนอ่านหรือเขียน และคืน DTO เท่าที่หน้าต้องใช้
 3. **การแก้ไข**: ใช้ Server Actions สำหรับฟอร์มภายในเมื่อเหมาะสม หรือ Route Handlers สำหรับ webhook/ผู้ใช้ภายนอก ทุก mutation ตรวจสิทธิ์และ validate ข้อมูลซ้ำที่ server หลังเผยแพร่จึง revalidate หน้าที่เกี่ยวข้อง
 4. **สื่อ**: เป้าหมายคือ private Supabase Storage; Route Handler ตรวจสถานะเนื้อหาก่อนคืนไฟล์ public/preview ไฟล์ที่ไม่มีสิทธิ์ไม่อยู่ใน `public/`
-5. **ค้นหาและ SEO**: เริ่มจากฐานข้อมูลและ taxonomy สำหรับข่าว/โครงการ ก่อนเพิ่ม search service; หน้าเผยแพร่มี metadata, canonical, OG, sitemap และ redirect จาก URL เดิม
+5. **ตัวกรองและ SEO**: หน้ารายการข่าว โครงการ และรายงานมีตัวกรองเฉพาะหมวด; ไม่มีหน้าค้นหาทั้งเว็บไซต์ หน้าเผยแพร่มี metadata, canonical, OG, sitemap และ redirect จาก URL เดิม
 6. **ภาษา**: เว็บภาษาไทยก่อน; งานภาษาอังกฤษพักไว้ตามคำขอผู้ใช้
 
 รายละเอียดการย้ายอยู่ใน [supabase-setup.md](supabase-setup.md) และหน้าสถานะอยู่ใน [status-pages.md](status-pages.md)

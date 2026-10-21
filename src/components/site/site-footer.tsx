@@ -34,7 +34,7 @@ export function SiteFooter() {
             <Link href="/about#history">ประวัติองค์กร</Link>
             <Link href="/about#vision">ทิศทางองค์กร</Link>
             <Link href="/about#structure">โครงสร้างบริหาร</Link>
-            <Link href="/departments">ฝ่ายงาน</Link>
+            <Link href="/about#structure">ฝ่ายงาน</Link>
             <Link href="/centers">ศูนย์ประสานงาน</Link>
             <Link href="/centers#members">องค์กรสมาชิก</Link>
           </nav>
@@ -53,7 +53,6 @@ export function SiteFooter() {
       <div className="shell site-footer__bottom">
         <span>© {new Date().getFullYear()} {site.officialName}</span>
         <span className="site-footer__legal">
-          <Link href="/search">ค้นหา</Link>
           <Link href="/privacy">ข้อมูลส่วนบุคคล</Link>
           <Link href="/cookies">คุกกี้</Link>
         </span>

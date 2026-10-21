@@ -25,11 +25,14 @@ export function DesktopNav() {
 
   return (
     <nav className="site-nav" aria-label="เมนูหลัก" ref={navRef}>
-      {site.navigation.map((item, index) => {
+      {site.navigation.filter((item) => item.href !== "/about" && item.href !== "/contact").map((item, index) => {
         if (!("children" in item) || !item.children) {
           return <Link className="site-nav__link" key={item.label} href={item.href} onMouseEnter={() => setOpenMenu(null)} onFocus={() => setOpenMenu(null)} onClick={() => setOpenMenu(null)}>{item.label}</Link>;
         }
         const expanded = openMenu === item.label;
+        const isDepartmentMenu = item.children.some((child) => child.href.startsWith("/departments/"));
+        const isReportMenu = item.href === "/reports";
+        const isStructuredMenu = isDepartmentMenu || isReportMenu;
         const panelId = `desktop-submenu-${index}`;
         return (
           <div
@@ -52,12 +55,24 @@ export function DesktopNav() {
               {item.label}
             </button>
             {expanded && (
-              <div className={`site-nav__dropdown${item.children.length > 6 ? " site-nav__dropdown--wide" : ""}`} id={panelId}>
-                <p className="site-nav__dropdown-title">{item.label}</p>
-                <Link className="site-nav__overview" href={item.href} onClick={() => setOpenMenu(null)}>ดูภาพรวม{item.label}</Link>
+              <div className={`site-nav__dropdown${isStructuredMenu ? " site-nav__dropdown--structured" : ""}${isReportMenu ? " site-nav__dropdown--reports" : ""}`} id={panelId}>
+                {isStructuredMenu ? (
+                  <div className="site-nav__structured-head">
+                    <p>{item.label}</p>
+                  </div>
+                ) : (
+                  <>
+                    <p className="site-nav__dropdown-title">{item.label}</p>
+                    <Link className="site-nav__overview" href={item.href} onClick={() => setOpenMenu(null)}>ดูภาพรวม{item.label}</Link>
+                  </>
+                )}
                 <div className="site-nav__options">
-                  {item.children.map((child) => (
-                    <Link href={child.href} key={child.label} onClick={() => setOpenMenu(null)}>{child.label}</Link>
+                  {item.children.map((child, childIndex) => (
+                    <Link href={child.href} key={child.label} onClick={() => setOpenMenu(null)}>
+                      {isStructuredMenu && <span className="site-nav__option-number" aria-hidden="true">{String(childIndex + 1).padStart(2, "0")}</span>}
+                      <span>{child.label}</span>
+                      {isStructuredMenu && <span className="site-nav__option-arrow" aria-hidden="true">↗</span>}
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -65,7 +80,6 @@ export function DesktopNav() {
           </div>
         );
       })}
-      <Link className="site-nav__link site-nav__search" href="/search" onMouseEnter={() => setOpenMenu(null)} onFocus={() => setOpenMenu(null)} onClick={() => setOpenMenu(null)}>ค้นหา</Link>
     </nav>
   );
 }

@@ -102,6 +102,21 @@ export const departmentCardThemes: Record<DepartmentSlug, DepartmentCardTheme> =
   communications: { accent: "#be185d", image: "/editorial/home-packing.jpg" },
 };
 
+// ภาพ Hero จากชุดสื่อจริงที่ CHNS ส่งให้ (ดู docs/photo-requirements.md)
+// ใช้ประกอบบริบทของหน้า ไม่ระบุว่าเป็นภาพกิจกรรมที่ฝ่ายนั้นรับผิดชอบโดยตรง
+type DepartmentHeroPhoto = { src: string; alt: string; position?: string };
+
+export const departmentHeroPhotos: Record<DepartmentSlug, DepartmentHeroPhoto> = {
+  domestic: { src: "/editorial/chns/page-centers.webp", alt: "ทีมงานในเรือขณะปฏิบัติงานในพื้นที่น้ำท่วม", position: "64% center" },
+  refugees: { src: "/editorial/chns/page-projects.webp", alt: "เด็กและครอบครัวกับสิ่งของช่วยเหลือ", position: "52% center" },
+  zakat: { src: "/editorial/chns/about-main.webp", alt: "กลุ่มผู้ร่วมงานส่งมอบสิ่งของช่วยเหลือ", position: "55% center" },
+  international: { src: "/editorial/chns/gallery-field.webp", alt: "ผู้ร่วมงานส่งมอบสิ่งของแก่เด็กในพื้นที่", position: "55% center" },
+  academic: { src: "/editorial/chns/page-about.webp", alt: "กลุ่มผู้ร่วมงาน CHNS ถ่ายภาพร่วมกัน", position: "50% center" },
+  relations: { src: "/editorial/chns/centers-body.webp", alt: "กลุ่มผู้ร่วมงานและครอบครัวถ่ายภาพร่วมกัน", position: "50% center" },
+  special: { src: "/editorial/chns/page-participate.webp", alt: "ทีมผู้ร่วมงานสวมเสื้อชูชีพถ่ายภาพร่วมกัน", position: "52% center" },
+  communications: { src: "/editorial/chns/page-news.webp", alt: "ผู้ร่วมงาน CHNS สื่อสารกับกลุ่มคนในพื้นที่", position: "50% center" },
+};
+
 // `latitude`/`longitude` ใช้พิกัดโดยประมาณของอำเภอที่ตั้งศูนย์ เพื่อวางหมุดบนแผนที่เท่านั้น ไม่ใช่ที่อยู่สำนักงาน
 export const regionalCenters = [
   { name: "ภาคเหนือตอนบน", location: "อำเภอเมือง จังหวัดเชียงใหม่", latitude: 18.7883, longitude: 98.9853 },

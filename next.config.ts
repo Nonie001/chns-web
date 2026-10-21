@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
       { source: "/about/history", destination: "/about#history", permanent: true },
       { source: "/about/direction", destination: "/about#vision", permanent: true },
       { source: "/about/structure", destination: "/about#structure", permanent: true },
+      { source: "/departments", destination: "/about#structure", permanent: true },
       { source: "/participate/donate", destination: "/participate#support", permanent: true },
       { source: "/participate/membership", destination: "/participate#membership", permanent: true },
     ];

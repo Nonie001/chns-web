@@ -74,8 +74,7 @@ export function MobileNav() {
       >
         <div className="mobile-nav__head">
           <Link className="site-brand" href="/" aria-label={`${site.officialName} หน้าแรก`} onClick={() => closeMenu()}>
-            <Image className="site-brand__mark" src="/brand/chns-mark.webp" alt="" width={56} height={56} />
-            <span className="site-brand__wordmark" aria-hidden="true">CHNS</span>
+            <Image className="mobile-nav__logo" src="/brand/chns-horizontal.webp" alt="" width={1600} height={251} />
           </Link>
           <button
             className="mobile-nav__close"
@@ -94,6 +93,7 @@ export function MobileNav() {
               return <Link key={item.label} href={item.href} onClick={() => closeMenu()}>{item.label}</Link>;
             }
             const expanded = openMenu === item.label;
+            const isStructuredMenu = item.children.some((child) => child.href.startsWith("/departments/")) || item.href === "/reports";
             return (
               <div className="mobile-nav__item" key={item.label}>
                 <button
@@ -108,7 +108,7 @@ export function MobileNav() {
                 </button>
                 {expanded && (
                   <div className="mobile-nav__submenu" id={`mobile-submenu-${index}`}>
-                    <Link className="mobile-nav__overview" href={item.href} onClick={() => closeMenu()}>ดูภาพรวม{item.label}</Link>
+                    {!isStructuredMenu && <Link className="mobile-nav__overview" href={item.href} onClick={() => closeMenu()}>ดูภาพรวม{item.label}</Link>}
                     {item.children.map((child) => (
                       <Link href={child.href} key={child.label} onClick={() => closeMenu()}>{child.label}</Link>
                     ))}
@@ -121,10 +121,6 @@ export function MobileNav() {
 
         <div className="mobile-nav__foot">
           <Link className="button button--accent" href="/participate#support" onClick={() => closeMenu()}>ร่วมสนับสนุน</Link>
-          <Link className="mobile-nav__search" href="/search" onClick={() => closeMenu()}>
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" strokeWidth="2" /><path d="m16 16 4.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
-            ค้นหา
-          </Link>
         </div>
       </div>
     </div>

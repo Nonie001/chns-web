@@ -96,7 +96,7 @@ export default async function HomePage() {
             </div>
           )}
           </>
-        ) : <div className="editorial-empty"><p>โครงการที่ผ่านการอนุมัติจะปรากฏที่นี่</p><Link href="/departments">รู้จักฝ่ายงาน ↗</Link></div>}
+        ) : <div className="editorial-empty"><p>โครงการที่ผ่านการอนุมัติจะปรากฏที่นี่</p><Link href="/about#structure">รู้จักฝ่ายงาน ↗</Link></div>}
       </div></section>
 
       <section className="section home-process" aria-labelledby="home-process-title">
@@ -107,7 +107,7 @@ export default async function HomePage() {
       </section>
 
       <section className="home-departments" aria-labelledby="home-departments-title"><div className="shell">
-        <div className="home-departments__intro"><div><p className="eyebrow eyebrow--light">OUR WORK</p><h2 id="home-departments-title">หลายบทบาท<br /><span>หนึ่งเป้าหมายร่วมกัน</span></h2></div><div className="home-departments__intro-aside"><p>สำรวจฝ่ายงานตามโครงสร้างของสภาเครือข่ายช่วยเหลือด้านมนุษยธรรม</p><Link className="home-departments__all" href="/departments">ดูงานของเราทั้งหมด ↗</Link></div></div>
+        <div className="home-departments__intro"><div><p className="eyebrow eyebrow--light">OUR WORK</p><h2 id="home-departments-title">หลายบทบาท<br /><span>หนึ่งเป้าหมายร่วมกัน</span></h2></div><div className="home-departments__intro-aside"><p>สำรวจฝ่ายงานตามโครงสร้างของสภาเครือข่ายช่วยเหลือด้านมนุษยธรรม</p><Link className="home-departments__all" href="/about#structure">ดูโครงสร้างฝ่ายงาน ↗</Link></div></div>
         <DepartmentCards />
       </div></section>
 

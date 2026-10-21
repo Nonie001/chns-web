@@ -28,15 +28,15 @@ export const site = {
     { label: "หน้าแรก", href: "/" },
     { label: "เกี่ยวกับเรา", href: "/about" },
     { label: "โครงการและภารกิจ", href: "/projects" },
-    { label: "ฝ่ายของเรา", href: "/departments", children: [
+    { label: "ฝ่ายของเรา", href: "/about#structure", children: [
       ...departments.map((department) => ({ label: department.name, href: `/departments/${department.slug}` })),
     ] },
     { label: "ศูนย์ประสานงาน", href: "/centers" },
-    { label: "ข่าวสาร", href: "/news", children: [
-      { label: "วิดีโอและสื่อ", href: "/media" },
+    { label: "ข่าวสาร", href: "/news" },
+    { label: "รายงาน", href: "/reports", children: [
       { label: "รายงานและเอกสาร", href: "/reports" },
+      { label: "วิดีโอและสื่อ", href: "/media" },
     ] },
-    { label: "ร่วมกับเรา", href: "/participate" },
     { label: "ติดต่อเรา", href: "/contact" },
   ] satisfies readonly NavigationItem[],
 } as const;

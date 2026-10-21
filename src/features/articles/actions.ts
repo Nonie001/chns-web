@@ -61,7 +61,6 @@ export async function saveArticleAction(_state: ArticleFormState, form: FormData
     }
     revalidatePath(`/news/${input.slug}`);
     revalidatePath("/news");
-    revalidatePath("/search");
     revalidatePath("/");
     revalidatePath("/admin/articles");
   } catch (error) {
@@ -86,7 +85,6 @@ export async function changeArticleStatusAction(form: FormData) {
   }
   revalidatePath(`/news/${article.slug}`);
   revalidatePath("/news");
-  revalidatePath("/search");
   revalidatePath("/");
   revalidatePath("/admin/articles");
 }

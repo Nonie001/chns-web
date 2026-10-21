@@ -47,7 +47,7 @@ export default function AboutPage() {
             <p>CHNS เป็นสภาเครือข่ายด้านมนุษยธรรมในสำนักจุฬาราชมนตรี มีฝ่ายงานและองค์กรเครือข่ายที่ร่วมกันประสานภารกิจช่วยเหลือผู้ประสบความเดือดร้อนทั้งในและต่างประเทศ</p>
             <p>เว็บไซต์นี้รวบรวมบทบาทของฝ่ายงาน โครงการ ข่าว และรายงานไว้ในโครงสร้างเดียวกัน เพื่อให้ติดตามการทำงานได้ชัดเจนขึ้น</p>
             <div className="about-story__links">
-              <Link className="button button--dark" href="/departments">ดูฝ่ายงานทั้งหมด <span aria-hidden="true">↗</span></Link>
+              <Link className="button button--dark" href="#structure">ดูโครงสร้างฝ่ายงาน <span aria-hidden="true">↗</span></Link>
               <Link className="text-link" href="/centers">เครือข่ายในพื้นที่ <span aria-hidden="true">↗</span></Link>
             </div>
           </div>
