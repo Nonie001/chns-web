@@ -6,6 +6,7 @@ import { MockNotice } from "@/components/site/mock-notice";
 import { PhotoSlider } from "@/components/site/photo-slider";
 import { aboutGallery, organizationDirection, organizationHistory } from "@/content/static/organization";
 import { departments, site } from "@/content/static/site";
+import { StoryCarousel } from "@/features/about/story-carousel";
 
 export const metadata: Metadata = {
   title: "เกี่ยวกับเรา | CHNS",
@@ -42,23 +43,16 @@ export default function AboutPage() {
       <section className="section story-section about-story" aria-labelledby="about-intro-title">
         <div className="shell about-story__grid">
           <div className="about-story__text">
-            <p className="eyebrow">WHO WE ARE</p>
+            <div className="about-story__eyebrow"><span className="about-story__eyebrow-line" aria-hidden="true" />WHO WE ARE</div>
             <h2 className="section-title" id="about-intro-title">พลังของเครือข่าย<br /><span>เพื่อมนุษยธรรม</span></h2>
             <p>CHNS เป็นสภาเครือข่ายด้านมนุษยธรรมในสำนักจุฬาราชมนตรี มีฝ่ายงานและองค์กรเครือข่ายที่ร่วมกันประสานภารกิจช่วยเหลือผู้ประสบความเดือดร้อนทั้งในและต่างประเทศ</p>
             <p>เว็บไซต์นี้รวบรวมบทบาทของฝ่ายงาน โครงการ ข่าว และรายงานไว้ในโครงสร้างเดียวกัน เพื่อให้ติดตามการทำงานได้ชัดเจนขึ้น</p>
             <div className="about-story__links">
-              <Link className="button button--dark" href="#structure">ดูโครงสร้างฝ่ายงาน <span aria-hidden="true">↗</span></Link>
-              <Link className="text-link" href="/centers">เครือข่ายในพื้นที่ <span aria-hidden="true">↗</span></Link>
+              <Link className="about-story__primary" href="#structure">ดูโครงสร้างฝ่ายงาน <span aria-hidden="true">↗</span></Link>
+              <Link className="about-story__secondary" href="/centers">เครือข่ายในพื้นที่ <span aria-hidden="true">↗</span></Link>
             </div>
           </div>
-          <figure className="about-story__media">
-            <div className="about-story__photo about-story__photo--main">
-              <Image src="/editorial/chns/about-main.webp" alt="กลุ่มผู้ร่วมงานส่งมอบสิ่งของช่วยเหลือ" fill sizes="(max-width: 900px) 92vw, 42vw" />
-            </div>
-            <div className="about-story__photo about-story__photo--inset">
-              <Image src="/editorial/chns/about-inset.webp" alt="กลุ่มเครือข่ายร่วมถ่ายภาพกิจกรรม" fill sizes="(max-width: 900px) 46vw, 20vw" />
-            </div>
-          </figure>
+          <StoryCarousel />
         </div>
       </section>
 

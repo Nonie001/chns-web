@@ -5,6 +5,7 @@ import { DepartmentCards } from "@/components/site/department-cards";
 import { HeroCarousel } from "@/components/site/hero-carousel";
 import { PartnerLogoGrid } from "@/components/site/partner-logo-grid";
 import { site } from "@/content/static/site";
+import { leadHeroSlide } from "@/content/static/hero";
 import { listDisplayArticles } from "@/features/articles/article-store";
 import { listPublishedSlides } from "@/features/hero/slide-store";
 import type { HeroCarouselItem } from "@/features/hero/types";
@@ -38,7 +39,7 @@ export default async function HomePage() {
     { id: "chns-field-2", imageSrc: "/editorial/chns/hero-2-feed-world.webp", mobileImageSrc: "/editorial/chns/hero-mobile-2.webp", imageAlt: "ภาพประกอบการรณรงค์และการส่งต่ออาหารเพื่อช่วยเหลือผู้เดือดร้อน" },
     { id: "chns-field-3", imageSrc: "/editorial/chns/hero-3.webp", mobileImageSrc: "/editorial/chns/hero-mobile-3.webp", imageAlt: "ทีมงานส่งมอบสิ่งของช่วยเหลือ" },
   ];
-  const slides: HeroCarouselItem[] = publishedSlides.length > 0 ? publishedSlides : fallbackSlides;
+  const slides: HeroCarouselItem[] = [leadHeroSlide, ...(publishedSlides.length > 0 ? publishedSlides : fallbackSlides)];
 
   return (
     <>
