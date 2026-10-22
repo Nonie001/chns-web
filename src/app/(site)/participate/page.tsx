@@ -5,13 +5,14 @@ import Link from "next/link";
 import { MockNotice } from "@/components/site/mock-notice";
 import { ProjectCard } from "@/components/site/project-card";
 import { organizationContact } from "@/content/static/organization";
+import { DonationAccounts } from "@/features/participation/donation-accounts";
 import { listPublishedProjects } from "@/features/projects/project-store";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "ร่วมกับเรา | CHNS",
-  description: "แนวทางร่วมสนับสนุนภารกิจและเข้าร่วมเป็นองค์กรสมาชิก CHNS",
+  description: "ช่องทางบริจาคและเลขบัญชีสำหรับสนับสนุนภารกิจ CHNS พร้อมข้อมูลการเข้าร่วมเป็นองค์กรสมาชิก",
 };
 
 export default async function ParticipatePage() {
@@ -32,35 +33,34 @@ export default async function ParticipatePage() {
       <nav className="section-contents shell" aria-label="หัวข้อในหน้าร่วมกับเรา">
         <span>สำรวจเนื้อหา</span>
         <div>
-          <a href="#support">ร่วมสนับสนุน</a>
+          <a href="#support">ช่องทางบริจาค</a>
           <a href="#projects">โครงการ</a>
           <a href="#membership">สมัครสมาชิกองค์กร</a>
         </div>
       </nav>
 
       <section className="section participate-section" id="support" aria-labelledby="support-title">
-        <div className="shell participate-section__grid">
-          <div>
-            <p className="eyebrow">SUPPORT THE WORK</p>
-            <h2 className="section-title" id="support-title">ร่วมสนับสนุน<br /><span>อย่างมั่นใจ</span></h2>
-            <p className="large-copy">การมีส่วนร่วมเริ่มจากการรู้จักภารกิจและใช้ช่องทางที่องค์กรรับรอง</p>
+        <div className="shell">
+          <div className="participate-section__heading">
+            <div>
+              <p className="eyebrow">MAKE AN IMPACT</p>
+              <h2 className="section-title" id="support-title">ช่องทาง<span>บริจาค</span></h2>
+            </div>
+            <p>เลือกวัตถุประสงค์ที่ต้องการสนับสนุน แล้วกดคัดลอกเลขบัญชีเพื่อใช้ในแอปธนาคาร</p>
           </div>
-          <div className="participate-panel">
-            <h3>สถานะช่องทางสนับสนุน</h3>
-            <p>ขณะนี้เว็บไซต์ยังไม่เปิดรับชำระเงินหรือรับหลักฐานการโอน และไม่มีบัญชีหรือ QR สำหรับโอน ช่องทางอย่างเป็นทางการจะปรากฏเมื่อ CHNS ยืนยันข้อมูลบัญชี ขั้นตอนตรวจยอด และการออกใบเสร็จแล้ว</p>
-          </div>
+          <DonationAccounts />
         </div>
       </section>
 
       <section className="section page-section participate-detail" aria-labelledby="support-steps-title">
         <div className="shell detail-grid">
           <div>
-            <p className="eyebrow">HOW IT WILL WORK</p>
-            <h2 className="section-title" id="support-steps-title">แนวทางสนับสนุนภารกิจ</h2>
+            <p className="eyebrow">DONATE WITH CARE</p>
+            <h2 className="section-title" id="support-steps-title">บริจาคได้ใน 3 ขั้นตอน</h2>
             <ol className="step-list">
-              <li><strong>เลือกโครงการ</strong><span>อ่านวัตถุประสงค์ พื้นที่ และฝ่ายรับผิดชอบ</span></li>
-              <li><strong>ตรวจช่องทาง</strong><span>ใช้ช่องทางที่ CHNS แสดงและรับรองบนเว็บไซต์เมื่อเปิดให้บริการ</span></li>
-              <li><strong>ติดตามผล</strong><span>ดูความคืบหน้าและหลักฐานที่เผยแพร่ได้</span></li>
+              <li><strong>เลือกวัตถุประสงค์</strong><span>ดูรายการบัญชีให้ตรงกับภารกิจที่ต้องการสนับสนุน</span></li>
+              <li><strong>คัดลอกเลขบัญชี</strong><span>แตะปุ่มคัดลอกบนรายการที่เลือก แล้วนำไปวางในแอปธนาคาร</span></li>
+              <li><strong>ตรวจชื่อผู้รับ</strong><span>ตรวจสอบชื่อบัญชีก่อนยืนยันการโอนทุกครั้ง</span></li>
             </ol>
             <Link className="button button--dark" href="/projects">สำรวจงานของเรา <span aria-hidden="true">↗</span></Link>
           </div>

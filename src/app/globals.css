@@ -3000,6 +3000,51 @@ a:hover .mock-photo img {
 .participate-section[id], .home-featured[id], .participate-membership[id] { scroll-margin-top: 6rem; }
 .participate-membership__intro { margin: 2rem 0; color: var(--muted); line-height: 1.8; }
 @media (max-width: 600px) { .section-contents { align-items: start; flex-direction: column; gap: 0.5rem; } }
+
+.participate-section { position: relative; overflow: hidden; background: radial-gradient(circle at 93% 4%, rgb(224 174 63 / 0.18), transparent 25%), radial-gradient(circle at 4% 65%, rgb(92 158 106 / 0.18), transparent 29%), #0b3021; }
+.participate-section::before { position: absolute; inset: 0; content: ""; background-image: linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px); background-size: 4rem 4rem; pointer-events: none; }
+.participate-section > .shell { position: relative; }
+.participate-section__heading { display: flex; justify-content: space-between; align-items: end; gap: 1.5rem; margin-bottom: 1.55rem; }
+.participate-section__heading .eyebrow { color: #d9b65a; }
+.participate-section__heading .section-title { color: #fff; font-size: clamp(2.1rem, 3.7vw, 3.5rem); }
+.participate-section__heading .section-title span { color: #e9bd5c; }
+.participate-section__heading > p { max-width: 29rem; margin: 0 0 0.25rem; color: #d6e6d8; font-size: 0.96rem; line-height: 1.65; }
+.donation-accounts__bank { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1rem 1.4rem; border: 1px solid #f5e2a4; border-radius: 1rem; background: #fffdf4; box-shadow: 0 16px 34px rgb(0 0 0 / 0.16); }
+.donation-accounts__bank-name { flex: 0 0 auto; }
+.donation-accounts__bank-name img { display: block; width: clamp(10rem, 17vw, 15rem); height: auto; }
+.donation-accounts__owner { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; padding-left: 1.5rem; border-left: 2px solid #e8cb76; }
+.donation-accounts__owner span { color: #687668; font-size: 0.78rem; }
+.donation-accounts__owner strong { color: #143d25; font-size: clamp(0.9rem, 1.2vw, 1.05rem); line-height: 1.45; }
+.donation-accounts__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; margin-top: 0.8rem; }
+.donation-card { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-width: 0; overflow: hidden; padding: 1rem 1.1rem 0.95rem; border: 1px solid #f6ebd1; border-radius: 1rem; background: linear-gradient(130deg, #fff 0%, #fffdf6 74%, #f8efd6 100%); box-shadow: 0 13px 25px rgb(0 0 0 / 0.13); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.donation-card::before { position: absolute; top: 0; left: 1.1rem; width: 3.2rem; height: 0.25rem; border-radius: 0 0 0.3rem 0.3rem; background: #d4a62c; content: ""; }
+.donation-card:hover { transform: translateY(-3px); box-shadow: 0 18px 28px rgb(0 0 0 / 0.2); }
+.donation-card__heading { display: flex; align-items: baseline; gap: 0.75rem; min-width: 0; margin-bottom: 0.7rem; }
+.donation-card__index { color: #b69642; font: 800 0.74rem var(--font-latin), sans-serif; letter-spacing: 0.05em; }
+.donation-card h3 { margin: 0; color: #233a2a; font-size: 0.96rem; line-height: 1.4; font-weight: 700; }
+.donation-card__bottom { display: flex; align-items: end; justify-content: space-between; gap: 0.6rem; }
+.donation-card__account { display: flex; flex-direction: column; min-width: 0; }
+.donation-card__account > span { color: #6e806d; font-size: 0.68rem; }
+.donation-card__number { min-width: 0; color: #0e4b2c; font: 800 clamp(1.18rem, 1.85vw, 1.48rem) var(--font-latin), var(--font-thai), sans-serif; letter-spacing: 0.015em; white-space: nowrap; user-select: all; }
+.donation-card__copy { display: inline-flex; align-items: center; justify-content: center; gap: 0.38rem; flex: 0 0 auto; min-height: 2.2rem; padding: 0.35rem 0.72rem; border: 1px solid #155132; border-radius: 999px; background: #135035; color: #fff; font-size: 0.78rem; font-weight: 700; cursor: pointer; transition: background 0.2s ease, transform 0.2s ease; }
+.donation-card__copy:hover { background: #0b3522; transform: translateY(-1px); }
+.donation-card__copy svg { display: block; width: 0.9rem; height: 0.9rem; }
+.donation-accounts__note { margin: 1rem 0 0; color: #d7e4d8; font-size: 0.82rem; line-height: 1.6; }
+@media (max-width: 900px) {
+  .participate-section__heading { align-items: start; flex-direction: column; gap: 0.7rem; }
+  .donation-accounts__bank { align-items: start; flex-direction: column; gap: 0.65rem; }
+  .donation-accounts__owner { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 680px) {
+  .donation-accounts__grid { grid-template-columns: 1fr; }
+  .donation-accounts__bank-name img { width: 11rem; }
+  .donation-card__number { font-size: 1.2rem; }
+}
+@media (max-width: 380px) {
+  .donation-card { padding-inline: 0.85rem; }
+  .donation-card__heading { gap: 0.5rem; }
+  .donation-card__copy { padding-inline: 0.5rem; }
+}
 .department-detail { background: #fff; }
 .department-detail [id] { scroll-margin-top: 7rem; }
 .department-detail svg { display: block; width: 1.15rem; height: 1.15rem; }
