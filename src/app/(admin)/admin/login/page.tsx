@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import "../admin.css";
 import { redirect } from "next/navigation";
 import { AdminLoginForm } from "@/components/admin/admin-login-form";
 import { getAdminSession } from "@/lib/auth/admin-session";
@@ -21,7 +22,7 @@ export default async function AdminLoginPage() {
         </Link>
         <p className="eyebrow">CONTENT ADMIN</p>
         <h1>เข้าสู่ระบบผู้ดูแล</h1>
-        <p>จัดการภาพสไลด์และเนื้อหาหน้าแรกในพื้นที่สำหรับผู้ได้รับสิทธิ์</p>
+        <p>จัดการข่าว โครงการ หน้าแรก และข้อมูลเครือข่ายในพื้นที่สำหรับผู้ได้รับสิทธิ์</p>
         <AdminLoginForm />
         <Link href="/" className="text-link">
           กลับหน้าเว็บไซต์ <span aria-hidden="true">↗</span>

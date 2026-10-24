@@ -13,10 +13,10 @@
 ## ข้อมูลและสิทธิ์
 
 - `projects` เก็บเนื้อหา/สถานะ; `project_audit` เก็บผู้ทำ เวลา และค่าก่อน/หลังทุกการสร้าง แก้ หรือเปลี่ยนสถานะ
-- public query ปกติคืนเฉพาะ `published`; โครงการจำลองที่ตั้ง `showcase_visible=true` มี query แยก และแสดงแทนเมื่อยังไม่มีโครงการจริงที่เผยแพร่ query และ Server Actions หลังบ้านตรวจ session + role `admin`; route ภาพร่างทั่วไปตอบ 404 ต่อผู้ไม่ล็อกอิน
+- public query คืนเฉพาะ `published`; query และ Server Actions หลังบ้านตรวจ session + role `admin`; route ภาพร่างตอบ 404 ต่อผู้ไม่ล็อกอิน
 - ภาพเก็บใน private Supabase Storage ไม่อยู่ใน `public/`; แปลงเป็น WebP และตัด metadata ก่อนเก็บ
 - รายชื่อฝ่ายดึงจากข้อมูลโครงสร้างใน `src/content/static/site.ts` และตรวจซ้ำที่ server
-- โครงการตัวอย่าง 6 รายการอยู่ใน Supabase เป็น `draft` + `is_mockup=true` พร้อม `showcase_visible=true` ตามคำขอให้แสดงบนหน้าแรกและหน้ารวม ป้ายกำกับบอกชัดว่าไม่ใช่ภารกิจจริงหรือช่องทางรับเงิน และฐานข้อมูลห้ามเปลี่ยนตัวอย่างเป็น `published`; รัน `node scripts/seed-project-mockups.mjs --apply` เพื่อเติมซ้ำโดยไม่สร้าง slug ซ้ำ
+- โครงการตัวอย่างเดิมถูกลบจากฐานข้อมูลและ Storage แล้ว ไม่มี fallback แสดงร่างบนหน้าสาธารณะ
 - การแก้โครงการที่เผยแพร่มีผลทันทีพร้อม audit; revision แยกสำหรับรออนุมัติยังไม่พร้อม
 
 ## ข้อมูลที่ยังไม่เก็บเป็น field เฉพาะ

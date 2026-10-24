@@ -5,6 +5,10 @@ import { ShareActions } from "./share-actions";
 
 export function ArticleDetail({ article, preview = false }: { article: PublicArticle; preview?: boolean }) {
   const paragraphs = article.body.split(/\n\s*\n/).map((part) => part.trim()).filter(Boolean);
+  const renderParagraph = (paragraph: string) => paragraph.split(/(https?:\/\/\S+)/g).map((part, index) =>
+    /^https?:\/\//.test(part)
+      ? <a key={index} href={part} target="_blank" rel="noopener noreferrer">{part}</a>
+      : part);
   return (
     <>
       <section className="detail-hero">
@@ -25,7 +29,7 @@ export function ArticleDetail({ article, preview = false }: { article: PublicArt
       <section className="section page-section">
         <div className="shell article-body">
           {article.publishedAt && <p className="eyebrow">เผยแพร่ {new Intl.DateTimeFormat("th-TH", { dateStyle: "long" }).format(new Date(article.publishedAt))}</p>}
-          {paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+          {paragraphs.map((paragraph, index) => <p key={index}>{renderParagraph(paragraph)}</p>)}
           {article.imageSrc && <p className="article-credit">ภาพ: {article.imageCredit}</p>}
           {!preview && <ShareActions title={article.title} />}
         </div>

@@ -1,9 +1,10 @@
+import { editorialImage } from "@/content/static/editorial-images";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArticleCard } from "@/components/site/article-card";
 import { PageHero } from "@/components/site/page-hero";
 import { ListPagination } from "@/components/site/list-pagination";
-import { listDisplayArticles } from "@/features/articles/article-store";
+import { listPublishedArticles } from "@/features/articles/article-store";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export default async function NewsPage({ searchParams }: PageProps<"/news">) {
   const params = await searchParams;
   const kind = params.kind === "news" || params.kind === "story" ? params.kind : null;
   const query = (typeof params.q === "string" ? params.q : "").trim().slice(0, 80);
-  const articles = await listDisplayArticles();
+  const articles = await listPublishedArticles();
   const visibleArticles = articles.filter((article) =>
     (!kind || article.kind === kind)
     && (!query || `${article.title} ${article.summary} ${article.body}`.toLocaleLowerCase("th").includes(query.toLocaleLowerCase("th"))),
@@ -27,7 +28,7 @@ export default async function NewsPage({ searchParams }: PageProps<"/news">) {
   const sectionTitle = kind === "news" ? "ข่าวประชาสัมพันธ์" : kind === "story" ? "บทความและเรื่องราว" : "เรื่องราวและข้อมูล";
   return (
     <>
-      <PageHero eyebrow="NEWS & STORIES" title="ข่าวสาร" description="ข่าวภารกิจ บทความ และเรื่องราวจากเครือข่าย" imageSrc="/editorial/chns/page-news.webp" imagePosition="center top" />
+      <PageHero eyebrow="NEWS & STORIES" title="ข่าวสาร" description="ข่าวภารกิจ บทความ และเรื่องราวจากเครือข่าย" imageSrc={editorialImage("page-news.webp")} imagePosition="center top" />
       <section className="section page-section page-section--listing" id="results">
         <div className="shell">
           <div className="section-heading">

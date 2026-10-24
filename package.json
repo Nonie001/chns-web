@@ -10,7 +10,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "supabase:import": "node scripts/import-supabase-content.mjs --apply",
     "supabase:verify": "node scripts/verify-supabase-content.mjs",
     "backup:local": "node scripts/backup-local.mjs"
   },

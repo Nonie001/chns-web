@@ -36,27 +36,25 @@
 │   │   ├── site/                       # header, footer, breadcrumb
 │   │   └── admin/                      # shell, navigation, table, form ของหลังบ้าน
 │   ├── features/
-│   │   ├── admin/                      # dashboard และ shell
+│   │   ├── about/                      # ภาพเลื่อนหน้าเกี่ยวกับเรา
 │   │   ├── hero/                       # สไลด์หน้าแรก
 │   │   ├── articles/                   # ข่าวและบทความ
 │   │   ├── reports/                    # รายงาน PDF
 │   │   ├── homepage/                   # เนื้อหาเด่น
-│   │   ├── departments/
+│   │   ├── contact/                    # กล่องข้อความติดต่อ
+│   │   ├── partners/                   # โลโก้ภาคี
 │   │   ├── projects/
-│   │   ├── news/
-│   │   ├── centers/
 │   │   └── participation/
 │   ├── content/static/                 # ข้อมูลที่เปลี่ยนไม่บ่อยและตรวจแล้ว
 │   └── lib/
 │       ├── auth/                       # session, permissions
 │       ├── storage/                    # media/private uploads
-│       ├── supabase/                   # client factory และ data access ปัจจุบัน
-│       └── seo/                        # metadata, sitemap helpers
+│       └── supabase/                   # client factory และ data access ปัจจุบัน
 ├── next.config.ts
 └── tsconfig.json                       # @/* ชี้เข้า src/*
 ```
 
-โฟลเดอร์ว่างที่มี `.gitkeep` เป็นจุดวางโมดูล ไม่ได้หมายความว่าฟังก์ชันนั้นถูกสร้างแล้ว `app/` ใช้เฉพาะ route และ layout; logic ของเนื้อหาควรอยู่ใน `features/` และการอ่าน/เขียนข้อมูลใน `lib/` หรือ data access layer ของ feature นั้น หน้าเฟส 1 ยังใช้ static content ขนาดเล็กใน `src/content/static/site.ts` และตั้ง `noindex` จนกว่าจะได้รับการอนุมัติให้เผยแพร่
+`app/` ใช้เฉพาะ route และ layout; logic ของเนื้อหาอยู่ใน `features/` และการอ่าน/เขียนข้อมูลอยู่ใน `lib/` หรือ data access layer ของ feature นั้น ข้อมูลที่อนุมัติและเปลี่ยนไม่บ่อยอยู่ใน `src/content/static/` เว็บไซต์ยังตั้ง `noindex` จนกว่าจะได้รับการอนุมัติให้เผยแพร่
 
 ## แผน route
 
@@ -85,9 +83,9 @@
 ## สถาปัตยกรรมข้อมูลเป้าหมาย
 
 1. **ฐานข้อมูล**: โมดูลคอนเทนต์ใช้ Supabase PostgreSQL/RLS; SQLite เดิมเก็บไว้ใน `.data/` เพื่อสำรองและนำเข้าย้อนหลัง ไม่อยู่ใน runtime เว็บ
-2. **การเข้าถึงข้อมูล**: Server Component อ่านผ่าน server-only data access layer; public query คืนรายการ `published` และข้อยกเว้นเฉพาะข่าว/โครงการตัวอย่างที่เจ้าของเว็บขอให้เปิดด้วย `showcase_visible=true`; admin query ตรวจ session + role + ขอบเขตฝ่ายก่อนอ่านหรือเขียน และคืน DTO เท่าที่หน้าต้องใช้
+2. **การเข้าถึงข้อมูล**: Server Component อ่านผ่าน server-only data access layer; public query คืนเฉพาะรายการ `published`; admin query ตรวจ session + role + ขอบเขตฝ่ายก่อนอ่านหรือเขียน และคืน DTO เท่าที่หน้าต้องใช้
 3. **การแก้ไข**: ใช้ Server Actions สำหรับฟอร์มภายในเมื่อเหมาะสม หรือ Route Handlers สำหรับ webhook/ผู้ใช้ภายนอก ทุก mutation ตรวจสิทธิ์และ validate ข้อมูลซ้ำที่ server หลังเผยแพร่จึง revalidate หน้าที่เกี่ยวข้อง
-4. **สื่อ**: เป้าหมายคือ private Supabase Storage; Route Handler ตรวจสถานะเนื้อหาก่อนคืนไฟล์ public/preview ไฟล์ที่ไม่มีสิทธิ์ไม่อยู่ใน `public/`
+4. **สื่อ**: Hero และภาพปกเนื้อหาอยู่ใน private Supabase Storage; Route Handler ตรวจสถานะก่อนคืนไฟล์ ส่วนภาพประกอบ CHNS ที่เคยเผยแพร่แล้วอยู่ใน public bucket `chns-editorial` แบบอ่านอย่างเดียวสำหรับผู้ชม ไม่มีภาพ mockup ใน `public/`
 5. **ตัวกรองและ SEO**: หน้ารายการข่าว โครงการ และรายงานมีตัวกรองเฉพาะหมวด; ไม่มีหน้าค้นหาทั้งเว็บไซต์ หน้าเผยแพร่มี metadata, canonical, OG, sitemap และ redirect จาก URL เดิม
 6. **ภาษา**: เว็บภาษาไทยก่อน; งานภาษาอังกฤษพักไว้ตามคำขอผู้ใช้
 

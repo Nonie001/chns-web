@@ -1,10 +1,11 @@
+import { editorialImage } from "@/content/static/editorial-images";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/site/page-hero";
 import { ListPagination } from "@/components/site/list-pagination";
 import { ProjectCard } from "@/components/site/project-card";
 import { departments } from "@/content/static/site";
-import { listDisplayProjects } from "@/features/projects/project-store";
+import { listPublishedProjects } from "@/features/projects/project-store";
 
 export const dynamic = "force-dynamic";
 
@@ -18,7 +19,7 @@ export default async function ProjectsPage({ searchParams }: PageProps<"/project
   const query = (typeof params.q === "string" ? params.q : "").trim().slice(0, 80);
   const department = typeof params.department === "string" ? params.department : "";
   const category = typeof params.category === "string" ? params.category : "";
-  const projects = await listDisplayProjects();
+  const projects = await listPublishedProjects();
   const categories = [...new Set(projects.map((project) => project.category))].sort((a, b) => a.localeCompare(b, "th"));
   const visibleProjects = projects.filter((project) =>
     (!department || project.departmentSlug === department)
@@ -35,7 +36,7 @@ export default async function ProjectsPage({ searchParams }: PageProps<"/project
         eyebrow="PROJECTS & MISSIONS"
         title="โครงการและภารกิจ"
         description="พื้นที่ติดตามเป้าหมาย ความคืบหน้า และผลลัพธ์ของงานด้านมนุษยธรรม"
-        imageSrc="/editorial/chns/page-projects.webp"
+        imageSrc={editorialImage("page-projects.webp")}
         imagePosition="center top"
       />
       <section className="section page-section page-section--listing" id="results">

@@ -1,3 +1,4 @@
+import { editorialImage } from "@/content/static/editorial-images";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,7 +32,7 @@ export default async function MediaPage() {
         eyebrow="PHOTO & VIDEO"
         title="ภาพและวิดีโอ"
         description="ภาพประกอบจากข่าวและโครงการที่ได้รับอนุมัติให้เผยแพร่ พร้อมแหล่งที่มา"
-        imageSrc="/editorial/chns/page-news.webp"
+        imageSrc={editorialImage("page-news.webp")}
       />
       <section className="section page-section">
         <div className="shell">

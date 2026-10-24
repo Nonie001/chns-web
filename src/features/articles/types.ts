@@ -13,8 +13,6 @@ export type Article = {
   imageCredit: string;
   imageRightsConfirmed: boolean;
   status: ArticleStatus;
-  isMockup: boolean;
-  showcaseVisible: boolean;
   createdAt: string;
   updatedAt: string;
   publishedAt: string | null;
@@ -24,5 +22,4 @@ export type ArticleInput = Pick<Article, "slug" | "title" | "kind" | "summary" |
 
 export type PublicArticle = Pick<Article, "slug" | "title" | "kind" | "summary" | "body" | "imageAlt" | "imageCredit" | "publishedAt"> & {
   imageSrc: string | null;
-  isDemo: boolean;
 };

@@ -1,14 +1,16 @@
 "use client";
 
+import { editorialImage } from "@/content/static/editorial-images";
+
 import Image from "next/image";
 import { useRef, useState } from "react";
 
 const photos = [
-  { src: "/editorial/chns/about-main.webp", alt: "กลุ่มผู้ร่วมงานส่งมอบสิ่งของช่วยเหลือ" },
-  { src: "/editorial/chns/about-inset.webp", alt: "กลุ่มเครือข่ายร่วมถ่ายภาพกิจกรรม" },
-  { src: "/editorial/chns/centers-body.webp", alt: "เครือข่ายและครอบครัวร่วมกิจกรรมช่วยเหลือผู้ประสบภัย" },
-  { src: "/editorial/chns/gallery-field.webp", alt: "อาสาสมัครส่งมอบสิ่งของให้เด็กในพื้นที่" },
-  { src: "/editorial/chns/gallery-winter.webp", alt: "ผู้ร่วมงานและเด็กร่วมกิจกรรมแบ่งปันเครื่องนุ่งห่ม" },
+  { src: editorialImage("about-main.webp"), alt: "กลุ่มผู้ร่วมงานส่งมอบสิ่งของช่วยเหลือ" },
+  { src: editorialImage("about-inset.webp"), alt: "กลุ่มเครือข่ายร่วมถ่ายภาพกิจกรรม" },
+  { src: editorialImage("centers-body.webp"), alt: "เครือข่ายและครอบครัวร่วมกิจกรรมช่วยเหลือผู้ประสบภัย" },
+  { src: editorialImage("gallery-field.webp"), alt: "อาสาสมัครส่งมอบสิ่งของให้เด็กในพื้นที่" },
+  { src: editorialImage("gallery-winter.webp"), alt: "ผู้ร่วมงานและเด็กร่วมกิจกรรมแบ่งปันเครื่องนุ่งห่ม" },
 ] as const;
 
 export function StoryCarousel() {

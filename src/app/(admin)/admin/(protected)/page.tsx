@@ -13,64 +13,66 @@ export default async function AdminDashboardPage() {
   const reports = await listAdminReports();
   const partners = await listAdminPartners();
   const newInquiries = await countNewContactInquiries();
-  const live = slides.filter((slide) => slide.status === "published").length;
+  const liveArticles = articles.filter((article) => article.status === "published").length;
+  const liveProjects = projects.filter((project) => project.status === "published").length;
+  const liveReports = reports.filter((report) => report.status === "published").length;
   return (
     <>
       <div className="admin-page-header">
         <p className="eyebrow">DASHBOARD</p>
         <h1>ภาพรวมหลังบ้าน</h1>
-        <p>จัดการสไลด์และข่าวสารที่เผยแพร่บนเว็บไซต์</p>
+        <p>สถานะเนื้อหาและทางลัดสำหรับงานที่ใช้บ่อย</p>
       </div>
       <div className="admin-summary-grid">
         <div>
-          <span>สไลด์ทั้งหมด</span>
-          <strong>{slides.length}</strong>
+          <span>ข่าวเผยแพร่</span>
+          <strong>{liveArticles}</strong>
         </div>
         <div>
-          <span>เผยแพร่แล้ว</span>
-          <strong>{live}</strong>
+          <span>โครงการเผยแพร่</span>
+          <strong>{liveProjects}</strong>
         </div>
         <div>
-          <span>ร่าง/เก็บถาวร</span>
-          <strong>{slides.length - live}</strong>
+          <span>ข้อความใหม่</span>
+          <strong>{newInquiries}</strong>
         </div>
+      </div>
+      <div className="admin-quick-grid">
+      <div className="admin-panel">
+        <h2>จัดหน้าแรก</h2>
+        <p>ลากโครงการลงตำแหน่งและดูตัวอย่างก่อนบันทึก</p>
+        <Link href="/admin/homepage/features" className="button button--dark">เปิดตัวจัดหน้า ↗</Link>
+      </div>
+      <div className="admin-panel">
+        <h2>ข่าวและบทความ</h2>
+        <p>{articles.length} รายการ · เผยแพร่แล้ว {liveArticles}</p>
+        <Link href="/admin/articles" className="button button--dark">จัดการข่าว ↗</Link>
+      </div>
+      <div className="admin-panel">
+        <h2>โครงการ</h2>
+        <p>{projects.length} รายการ · เผยแพร่แล้ว {liveProjects}</p>
+        <Link href="/admin/projects" className="button button--dark">จัดการโครงการ ↗</Link>
       </div>
       <div className="admin-panel">
         <h2>ข้อความติดต่อ</h2>
         <p>มีเรื่องใหม่รอรับ {newInquiries} รายการ</p>
-        <Link href="/admin/inquiries" className="button button--dark">ดูข้อความติดต่อ <span aria-hidden="true">↗</span></Link>
-      </div>
-      <div className="admin-panel">
-        <h2>สไลด์หน้าแรก</h2>
-        <p>เพิ่มภาพ จัดลำดับ และเลือกสไลด์ที่แสดงบนหน้าเว็บ</p>
-        <Link href="/admin/homepage/slides" className="button button--dark">
-          จัดการสไลด์ <span aria-hidden="true">↗</span>
-        </Link>
-      </div>
-      <div className="admin-panel">
-        <h2>ข่าวและบทความ</h2>
-        <p>{articles.length} รายการ · เผยแพร่แล้ว {articles.filter((article) => article.status === "published").length} รายการ</p>
-        <Link href="/admin/articles" className="button button--dark">จัดการบทความ <span aria-hidden="true">↗</span></Link>
-      </div>
-      <div className="admin-panel">
-        <h2>โครงการ</h2>
-        <p>{projects.length} รายการ · เผยแพร่แล้ว {projects.filter((project) => project.status === "published").length} รายการ</p>
-        <Link href="/admin/projects" className="button button--dark">จัดการโครงการ <span aria-hidden="true">↗</span></Link>
-      </div>
-      <div className="admin-panel">
-        <h2>เนื้อหาเด่นหน้าแรก</h2>
-        <p>เลือกข่าวและโครงการที่เผยแพร่แล้วให้ขึ้นหน้าแรก</p>
-        <Link href="/admin/homepage/features" className="button button--dark">จัดเนื้อหาเด่น <span aria-hidden="true">↗</span></Link>
+        <Link href="/admin/inquiries" className="button button--dark">ดูข้อความ ↗</Link>
       </div>
       <div className="admin-panel">
         <h2>รายงานและเอกสาร</h2>
-        <p>{reports.length} รายการ · เผยแพร่แล้ว {reports.filter((report) => report.status === "published").length} รายการ</p>
-        <Link href="/admin/reports" className="button button--dark">จัดการรายงาน <span aria-hidden="true">↗</span></Link>
+        <p>{reports.length} รายการ · เผยแพร่แล้ว {liveReports}</p>
+        <Link href="/admin/reports" className="button button--dark">จัดการรายงาน ↗</Link>
       </div>
       <div className="admin-panel">
         <h2>ภาคีเครือข่าย</h2>
         <p>{partners.length} รายการ · เผยแพร่แล้ว {partners.filter((partner) => partner.status === "published").length} รายการ</p>
-        <Link href="/admin/partners" className="button button--dark">จัดการโลโก้ภาคี <span aria-hidden="true">↗</span></Link>
+        <Link href="/admin/partners" className="button button--dark">จัดการภาคี ↗</Link>
+      </div>
+      <div className="admin-panel">
+        <h2>สไลด์หน้าแรก</h2>
+        <p>{slides.length} สไลด์ · เผยแพร่แล้ว {slides.filter((slide) => slide.status === "published").length}</p>
+        <Link href="/admin/homepage/slides" className="button button--dark">จัดการสไลด์ ↗</Link>
+      </div>
       </div>
     </>
   );

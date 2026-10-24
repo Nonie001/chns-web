@@ -16,7 +16,6 @@ export default async function ProjectPreviewPage({ params }: PageProps<"/admin/p
         imageSrc: project.imageKey ? `/api/project-images/${project.imageKey}` : null,
         imageAlt: project.imageAlt, imageCredit: project.imageCredit,
         publishedAt: project.status === "published" ? project.publishedAt : null,
-        isDemo: project.isMockup,
       }} />
     </div>
   );

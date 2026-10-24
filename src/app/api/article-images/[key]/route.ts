@@ -9,10 +9,10 @@ export async function GET(_request: Request, { params }: RouteContext<"/api/arti
   if (!isArticleImageKey(key)) return new Response(null, { status: 404 });
   const article = await getArticleByImageKey(key);
   if (!article) return new Response(null, { status: 404 });
-  if (article.status !== "published" && !article.showcaseVisible && !(await getAdminSession())) {
+  if (article.status !== "published" && !(await getAdminSession())) {
     return new Response(null, { status: 404 });
   }
-  const image = await readArticleImage(key, article.status !== "published" && !article.showcaseVisible);
+  const image = await readArticleImage(key, article.status !== "published");
   if (!image) return new Response(null, { status: 404 });
   return new Response(new Uint8Array(image), {
     headers: {

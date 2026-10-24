@@ -1,8 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  outputFileTracingIncludes: {
-    "/api/partner-logos/*": ["./assets/partner-logos/*.webp"],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: new URL(process.env.NEXT_PUBLIC_SUPABASE_URL ?? "https://your-project.supabase.co").hostname,
+        pathname: "/storage/v1/object/public/chns-editorial/**",
+      },
+    ],
   },
   async redirects() {
     return [

@@ -4,7 +4,7 @@
 
 ## สถานะ
 
-โครงหน้าสาธารณะตาม sitemap อยู่ใน `src/app/(site)/` แล้ว ระบบหลังบ้านใช้ Supabase Auth, PostgreSQL/RLS และ private Storage สำหรับ Hero, ข่าว/บทความ, โครงการ, รายงาน, โลโก้ภาคี และเนื้อหาเด่น หน้าเว็บอ่านเฉพาะรายการที่เผยแพร่ ตัวอย่างภาพและเนื้อหาถูกนำเข้าเป็นฉบับร่างสำหรับพรีวิวหลังบ้าน และมีกฎฐานข้อมูลห้ามเผยแพร่รายการ mockup เว็บไซต์ตั้ง `noindex` ระหว่างรออนุมัติเนื้อหาและสื่อ คลังสื่อร่วมและ workflow หลาย role ยังไม่เสร็จ การรับชำระเงินยังไม่เปิด
+โครงหน้าสาธารณะตาม sitemap อยู่ใน `src/app/(site)/` แล้ว ระบบหลังบ้านใช้ Supabase Auth, PostgreSQL/RLS และ private Storage สำหรับ Hero, ข่าว/บทความ, โครงการ, รายงาน, โลโก้ภาคี และเนื้อหาเด่น หน้าเว็บอ่านเฉพาะรายการที่เผยแพร่ ข้อมูลและภาพ mockup เดิมถูกลบแล้ว ภาพ Hero และภาพประกอบ CHNS โหลดจาก Supabase Storage เว็บไซต์ตั้ง `noindex` ระหว่างรออนุมัติเนื้อหาและสื่อ คลังสื่อร่วมและ workflow หลาย role ยังไม่เสร็จ การรับชำระเงินยังไม่เปิด
 
 ## เอกสารหลัก
 
@@ -16,7 +16,6 @@
 - [วิเคราะห์เว็บไซต์ตัวอย่าง](docs/reference-sites.md)
 - [แผนพัฒนาทีละเฟส](docs/phases.md)
 - [บันทึกความคืบหน้า](docs/progress.md)
-- [ภาพและข้อมูล mockup](docs/mockup-assets.md)
 - [สไลด์ภาพและวิธีตั้งค่าหลังบ้าน](docs/hero-carousel-admin.md)
 - [ข่าว/บทความและวิธีใช้งานหลังบ้าน](docs/article-admin.md)
 - [โครงการและวิธีใช้งานหลังบ้าน](docs/project-admin.md)
@@ -40,4 +39,4 @@ npm run backup:local -- --out /path/to/new-directory
 ```
 
 ตั้งค่าแอปใน `src/app/`; เก็บ `public/`, `package.json`, `next.config.ts` และ `tsconfig.json` ที่รากโปรเจกต์ตาม convention ของ Next.js รุ่นนี้
-ตั้งค่า `.env.local` ตาม `.env.example` แล้วอ่าน [คู่มือ Supabase](docs/supabase-setup.md) สำหรับการเพิ่มผู้ดูแล การนำเข้าข้อมูลเดิม และการสำรองข้อมูล
+ตั้งค่า `.env.local` ตาม `.env.example` แล้วอ่าน [คู่มือ Supabase](docs/supabase-setup.md) สำหรับการเพิ่มผู้ดูแล การจัดการภาพ และการสำรองข้อมูล

@@ -16,7 +16,7 @@
 - หน้า public อ่านเฉพาะ `published` ที่มีไฟล์ PDF; หน้า admin, Server Actions และไฟล์ร่างตรวจ session กับ role `admin` ที่ server
 - ไฟล์อยู่ใน private Supabase Storage ไม่อยู่ใน `public/`; route `/api/report-files/[key]` ตอบเป็น attachment พร้อม `nosniff`, `sandbox` และ `no-store`
 - การแก้รายงานที่เผยแพร่มีผลทันทีและบันทึก audit; ระบบยังไม่มี revision ที่รอตรวจโดยไม่เปลี่ยนหน้าสาธารณะ
-- รายงานตัวอย่าง 3 รายการอยู่ใน Supabase เป็น draft สำหรับพรีวิวหลังบ้านและไม่ปรากฏบนหน้าสาธารณะ
+- รายงานตัวอย่างเดิมถูกลบจาก Supabase แล้ว หน้าสาธารณะแสดงเฉพาะรายงานที่เผยแพร่จริง
 
 ## สำรองข้อมูลและข้อจำกัด
 

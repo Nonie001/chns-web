@@ -4,12 +4,10 @@ import type { HeroCarouselItem, HeroSlide, HeroSlideInput } from "./types";
 
 type Row = { id: string; title: string; image_key: string; mobile_image_key: string | null;
   image_alt: string; status: HeroSlide["status"]; is_mockup: boolean; position: number;
-  created_by: string | null; created_at: string; updated_at: string; published_at: string | null };
+  published_at: string | null };
 const fromRow = (row: Row): HeroSlide => ({ id: row.id, title: row.title, imageKey: row.image_key,
   mobileImageKey: row.mobile_image_key, imageAlt: row.image_alt, status: row.status, position: row.position,
-  createdBy: row.created_by ?? "", createdAt: row.created_at, updatedAt: row.updated_at,
-  publishedAt: row.published_at, eyebrow: "", highlight: "", description: "", primaryLabel: "",
-  primaryHref: "", secondaryLabel: "", secondaryHref: "" });
+  publishedAt: row.published_at });
 
 export async function listPublishedSlides(): Promise<HeroCarouselItem[]> {
   const rows = await listPublicRows<Row>("hero_slides", "position", true);

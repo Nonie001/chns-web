@@ -9,8 +9,8 @@ export async function GET(_request: Request, { params }: RouteContext<"/api/proj
   if (!isProjectImageKey(key)) return new Response(null, { status: 404 });
   const project = await getProjectByImageKey(key);
   if (!project) return new Response(null, { status: 404 });
-  if (project.status !== "published" && !project.showcaseVisible && !(await getAdminSession())) return new Response(null, { status: 404 });
-  const image = await readProjectImage(key, project.status !== "published" && !project.showcaseVisible);
+  if (project.status !== "published" && !(await getAdminSession())) return new Response(null, { status: 404 });
+  const image = await readProjectImage(key, project.status !== "published");
   if (!image) return new Response(null, { status: 404 });
   return new Response(new Uint8Array(image), {
     headers: { "Content-Type": "image/webp", "Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff" },

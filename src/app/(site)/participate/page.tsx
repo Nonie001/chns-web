@@ -1,3 +1,4 @@
+import { editorialImage } from "@/content/static/editorial-images";
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import Image from "next/image";
@@ -20,7 +21,7 @@ export default async function ParticipatePage() {
 
   return (
     <>
-      <section className="inner-hero" style={{ "--hero-image": "url(/editorial/chns/page-participate.webp)" } as CSSProperties}>
+      <section className="inner-hero" style={{ "--hero-image": `url(${editorialImage("page-participate.webp")})` } as CSSProperties}>
         <div className="shell inner-hero__grid">
           <div>
             <p className="eyebrow eyebrow--light">GET INVOLVED</p>
@@ -64,7 +65,7 @@ export default async function ParticipatePage() {
             </ol>
             <Link className="button button--dark" href="/projects">สำรวจงานของเรา <span aria-hidden="true">↗</span></Link>
           </div>
-          <Image className="editorial-photo" src="/editorial/chns/about-main.webp" width={1400} height={934} alt="ทีมงานส่งมอบสิ่งของช่วยเหลือ" />
+          <Image className="editorial-photo" src={editorialImage("about-main.webp")} width={1400} height={934} alt="ทีมงานส่งมอบสิ่งของช่วยเหลือ" />
         </div>
       </section>
 

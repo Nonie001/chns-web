@@ -5,7 +5,7 @@ export const departments = [
   { slug: "zakat", name: "กองซะกาต" },
   { slug: "international", name: "ฝ่ายต่างประเทศ" },
   { slug: "academic", name: "ฝ่ายวิชาการ" },
-  { slug: "relations", name: "ฝ่ายองค์กรสัมพันธ์" },
+  { slug: "relations", name: "ฝ่ายองค์สัมพันธ์" },
   { slug: "special", name: "ฝ่ายกิจการพิเศษ" },
   { slug: "communications", name: "ฝ่ายการตลาดและสื่อสาร" },
 ] as const;

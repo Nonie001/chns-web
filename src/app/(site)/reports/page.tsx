@@ -1,3 +1,4 @@
+import { editorialImage } from "@/content/static/editorial-images";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/site/page-hero";
@@ -21,7 +22,7 @@ export default async function ReportsPage({ searchParams }: PageProps<"/reports"
   );
   return (
     <>
-      <PageHero eyebrow="REPORTS & RESOURCES" title="รายงานและเอกสาร" description="พื้นที่รวบรวมรายงานภารกิจและเอกสารที่องค์กรอนุมัติให้เผยแพร่" imageSrc="/editorial/transparency.webp" />
+      <PageHero eyebrow="REPORTS & RESOURCES" title="รายงานและเอกสาร" description="พื้นที่รวบรวมรายงานภารกิจและเอกสารที่องค์กรอนุมัติให้เผยแพร่" imageSrc={editorialImage("about-inset.webp")} />
       <section className="section page-section">
         <div className="shell">
           <div className="section-heading">

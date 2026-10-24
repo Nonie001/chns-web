@@ -1,3 +1,4 @@
+import { editorialImage } from "@/content/static/editorial-images";
 import { departments } from "./site";
 
 // เจ้าของข้อมูล: ฝ่ายการตลาดและสื่อสาร CHNS; อนุมัติโดยผู้ใช้เมื่อ 26 ก.ย. 2569
@@ -45,6 +46,24 @@ export const organizationDirection = {
   ],
 } as const;
 
+// ต้นฉบับ: ผัง “โครงสร้างบริหารงาน สภาเครือข่าย 2569-2573”
+// Revision no.23-04-2569 ที่เจ้าของเว็บไซต์ส่งให้เมื่อ 25 ต.ค. 2569
+// รายการตำแหน่งนี้เป็นข้อมูลโครงสร้าง ไม่ใช่รายชื่อผู้ดำรงตำแหน่ง
+export const organizationStructure = {
+  term: "2569–2573",
+  revision: "23 เมษายน 2569",
+  memberTypes: ["สมาชิกวิสามัญ", "สมาชิกสามัญ", "สมาชิกก่อตั้ง", "สมาชิกกิตติมศักดิ์"],
+  council: "คณะกรรมการสภาเครือข่ายฯ",
+  councilSupport: ["ผู้ตรวจสอบภายใน", "ที่ปรึกษาอาวุโส (ชูรอ)"],
+  executive: "คณะกรรมการบริหารสภาเครือข่ายฯ",
+  chair: "ประธานสภาเครือข่าย",
+  chairSupport: ["เหรัญญิก", "ฝ่ายยุทธศาสตร์และนโยบาย"],
+  leadership: ["รองประธานสภา", "รองประธานสภา", "เลขาธิการ", "รองประธานสภา", "รองประธานสภา"],
+  regional: "ศูนย์ประสานงานระดับภูมิภาค",
+  provincial: "ศูนย์ประสานงานระดับจังหวัด",
+  memberOrganization: "องค์กรสมาชิก",
+} as const;
+
 type DepartmentSlug = (typeof departments)[number]["slug"];
 type DepartmentProfile = { summary: string; roles: readonly string[]; initiatives: readonly string[] };
 
@@ -87,19 +106,19 @@ export const departmentProfiles: Record<DepartmentSlug, DepartmentProfile> = {
   },
 };
 
-// ธีมการ์ดฝ่ายงานบนหน้าแรก: สีประจำฝ่าย (แสดงเมื่อชี้เมาส์) และภาพประกอบแนวคิด
-// ภาพทั้งหมดเป็นภาพจำลองเพื่อประกอบการออกแบบ ไม่ใช่ภาพการดำเนินงานจริงของ CHNS
+// ธีมการ์ดฝ่ายงานบนหน้าแรก: สีประจำฝ่ายและภาพจากชุดสื่อ CHNS
+// ภาพใช้ประกอบบริบทของฝ่าย ไม่ระบุว่าเป็นกิจกรรมที่ฝ่ายนั้นรับผิดชอบโดยตรง
 type DepartmentCardTheme = { accent: string; image: string };
 
 export const departmentCardThemes: Record<DepartmentSlug, DepartmentCardTheme> = {
-  domestic: { accent: "#2e7d46", image: "/editorial/work-areas.webp" },
-  refugees: { accent: "#0f766e", image: "/editorial/home-relief.jpg" },
-  zakat: { accent: "#b45309", image: "/editorial/transparency.webp" },
-  international: { accent: "#1d4ed8", image: "/editorial/coordination.webp" },
-  academic: { accent: "#6d28d9", image: "/editorial/participation.webp" },
-  relations: { accent: "#c2410c", image: "/editorial/home-packing.jpg" },
-  special: { accent: "#475569", image: "/editorial/home-hero.webp" },
-  communications: { accent: "#be185d", image: "/editorial/home-packing.jpg" },
+  domestic: { accent: "#2e7d46", image: editorialImage("page-centers.webp") },
+  refugees: { accent: "#0f766e", image: editorialImage("gallery-family.webp") },
+  zakat: { accent: "#b45309", image: editorialImage("about-inset.webp") },
+  international: { accent: "#1d4ed8", image: editorialImage("gallery-group.webp") },
+  academic: { accent: "#6d28d9", image: editorialImage("page-participate.webp") },
+  relations: { accent: "#c2410c", image: editorialImage("home-process.webp") },
+  special: { accent: "#475569", image: editorialImage("about-main.webp") },
+  communications: { accent: "#be185d", image: editorialImage("home-process.webp") },
 };
 
 // ภาพ Hero จากชุดสื่อจริงที่ CHNS ส่งให้ (ดู docs/photo-requirements.md)
@@ -107,14 +126,14 @@ export const departmentCardThemes: Record<DepartmentSlug, DepartmentCardTheme> =
 type DepartmentHeroPhoto = { src: string; alt: string; position?: string };
 
 export const departmentHeroPhotos: Record<DepartmentSlug, DepartmentHeroPhoto> = {
-  domestic: { src: "/editorial/chns/page-centers.webp", alt: "ทีมงานในเรือขณะปฏิบัติงานในพื้นที่น้ำท่วม", position: "64% center" },
-  refugees: { src: "/editorial/chns/page-projects.webp", alt: "เด็กและครอบครัวกับสิ่งของช่วยเหลือ", position: "52% center" },
-  zakat: { src: "/editorial/chns/about-main.webp", alt: "กลุ่มผู้ร่วมงานส่งมอบสิ่งของช่วยเหลือ", position: "55% center" },
-  international: { src: "/editorial/chns/gallery-field.webp", alt: "ผู้ร่วมงานส่งมอบสิ่งของแก่เด็กในพื้นที่", position: "55% center" },
-  academic: { src: "/editorial/chns/page-about.webp", alt: "กลุ่มผู้ร่วมงาน CHNS ถ่ายภาพร่วมกัน", position: "50% center" },
-  relations: { src: "/editorial/chns/centers-body.webp", alt: "กลุ่มผู้ร่วมงานและครอบครัวถ่ายภาพร่วมกัน", position: "50% center" },
-  special: { src: "/editorial/chns/page-participate.webp", alt: "ทีมผู้ร่วมงานสวมเสื้อชูชีพถ่ายภาพร่วมกัน", position: "52% center" },
-  communications: { src: "/editorial/chns/page-news.webp", alt: "ผู้ร่วมงาน CHNS สื่อสารกับกลุ่มคนในพื้นที่", position: "50% center" },
+  domestic: { src: editorialImage("page-centers.webp"), alt: "ทีมงานในเรือขณะปฏิบัติงานในพื้นที่น้ำท่วม", position: "64% center" },
+  refugees: { src: editorialImage("page-projects.webp"), alt: "เด็กและครอบครัวกับสิ่งของช่วยเหลือ", position: "52% center" },
+  zakat: { src: editorialImage("about-main.webp"), alt: "กลุ่มผู้ร่วมงานส่งมอบสิ่งของช่วยเหลือ", position: "55% center" },
+  international: { src: editorialImage("gallery-field.webp"), alt: "ผู้ร่วมงานส่งมอบสิ่งของแก่เด็กในพื้นที่", position: "55% center" },
+  academic: { src: editorialImage("page-about.webp"), alt: "กลุ่มผู้ร่วมงาน CHNS ถ่ายภาพร่วมกัน", position: "50% center" },
+  relations: { src: editorialImage("centers-body.webp"), alt: "กลุ่มผู้ร่วมงานและครอบครัวถ่ายภาพร่วมกัน", position: "50% center" },
+  special: { src: editorialImage("page-participate.webp"), alt: "ทีมผู้ร่วมงานสวมเสื้อชูชีพถ่ายภาพร่วมกัน", position: "52% center" },
+  communications: { src: editorialImage("page-news.webp"), alt: "ผู้ร่วมงาน CHNS สื่อสารกับกลุ่มคนในพื้นที่", position: "50% center" },
 };
 
 // `latitude`/`longitude` ใช้พิกัดโดยประมาณของอำเภอที่ตั้งศูนย์ เพื่อวางหมุดบนแผนที่เท่านั้น ไม่ใช่ที่อยู่สำนักงาน
@@ -160,32 +179,32 @@ export const organizationContact = {
 // ภาพจากชุดสื่อ CHNS ที่ผู้ใช้ส่งให้ในเดือนตุลาคม 2569; ไม่ระบุชื่อบุคคล พื้นที่ หรือวันที่ที่ยังไม่ได้ยืนยัน
 export const aboutGallery = [
   {
-    src: "/editorial/chns/about-main.webp",
+    src: editorialImage("about-main.webp"),
     title: "ประสานเครือข่าย",
     caption: "ผู้ร่วมงานจากหลายกลุ่มส่งมอบสิ่งของร่วมกัน",
   },
   {
-    src: "/editorial/chns/centers-body.webp",
+    src: editorialImage("centers-body.webp"),
     title: "ช่วยเหลือผู้ประสบภัย",
     caption: "เครือข่ายในพื้นที่ร่วมกิจกรรมช่วยเหลืออุทกภัย",
   },
   {
-    src: "/editorial/chns/gallery-family.webp",
+    src: editorialImage("gallery-family.webp"),
     title: "ส่งต่ออาหาร",
     caption: "ผู้รับความช่วยเหลือกับสิ่งของด้านอาหาร",
   },
   {
-    src: "/editorial/chns/gallery-field.webp",
+    src: editorialImage("gallery-field.webp"),
     title: "ลงพื้นที่ช่วยเหลือ",
     caption: "อาสาสมัครส่งมอบสิ่งของแก่เด็กในพื้นที่",
   },
   {
-    src: "/editorial/chns/gallery-group.webp",
+    src: editorialImage("gallery-group.webp"),
     title: "ร่วมมือกับชุมชน",
     caption: "ทีมงานและคนในชุมชนร่วมถ่ายภาพกับสิ่งของช่วยเหลือ",
   },
   {
-    src: "/editorial/chns/gallery-winter.webp",
+    src: editorialImage("gallery-winter.webp"),
     title: "แบ่งปันเครื่องนุ่งห่ม",
     caption: "ผู้ร่วมงานและเด็กในพื้นที่รับสิ่งของ",
   },

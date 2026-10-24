@@ -1,9 +1,8 @@
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 import sharp from "sharp";
 import { listPublishedPartners } from "@/features/partners/partner-store";
 import { logoSheetCellHeight, logoSheetCellWidth, logoSheetColumns, logoSheetVersion } from "@/features/partners/logo-sheet";
 import { readPartnerLogo } from "@/lib/storage/partner-logos";
+import { createSupabasePublicClient } from "@/lib/supabase/public";
 import baselineSheet from "@/lib/storage/partner-logo-sheet-baseline.json";
 
 export const runtime = "nodejs";
@@ -28,11 +27,9 @@ export async function GET(request: Request) {
   if (cachedSheet?.version !== version) {
     let bytes: Buffer | null = null;
     if (version === baselineSheet.version) {
-      try {
-        bytes = await readFile(join(process.cwd(), "assets", "partner-logos", "initial-sheet.webp"));
-      } catch {
-        // Fall back to composing the current approved list if the baseline is unavailable.
-      }
+      const { data } = await createSupabasePublicClient().storage
+        .from("chns-editorial").download("partner-logo-sheet.webp");
+      if (data) bytes = Buffer.from(await data.arrayBuffer());
     }
     if (!bytes) {
       const images = await Promise.all(partners.map((partner) =>

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import "../admin.css";
+import { AdminNavigation } from "@/components/admin/admin-navigation";
 import { AdminSignout } from "@/components/admin/admin-signout";
 import { requireAdminSession } from "@/lib/auth/admin-session";
 
@@ -17,24 +19,13 @@ export default async function AdminProtectedLayout({
           <span>CHNS</span>
           <small>CONTENT ADMIN</small>
         </Link>
-        <nav aria-label="เมนูหลังบ้าน">
-          <Link href="/admin">ภาพรวม</Link>
-          <Link href="/admin/homepage/slides">สไลด์หน้าแรก</Link>
-          <Link href="/admin/homepage/features">เนื้อหาเด่น</Link>
-          <Link href="/admin/articles">ข่าวและบทความ</Link>
-          <Link href="/admin/projects">โครงการ</Link>
-          <Link href="/admin/reports">รายงาน</Link>
-          <Link href="/admin/partners">โลโก้ภาคี</Link>
-          <Link href="/admin/inquiries">ข้อความติดต่อ</Link>
-          <Link href="/admin/account">บัญชีและรหัสผ่าน</Link>
-          <Link href="/">ดูเว็บไซต์ ↗</Link>
-        </nav>
+        <AdminNavigation />
         <div className="admin-sidebar__bottom">
           <span>{session.user.email}</span>
           <AdminSignout />
         </div>
       </aside>
-      <main className="admin-main">{children}</main>
+      <main className="admin-main"><div className="admin-topbar"><span>CHNS / CONTENT ADMIN</span><Link href="/" target="_blank" rel="noopener noreferrer">เปิดเว็บไซต์ ↗</Link></div>{children}</main>
     </div>
   );
 }

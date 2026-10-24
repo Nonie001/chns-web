@@ -14,8 +14,6 @@ export type Project = {
   imageCredit: string;
   imageRightsConfirmed: boolean;
   status: ProjectStatus;
-  isMockup: boolean;
-  showcaseVisible: boolean;
   createdAt: string;
   updatedAt: string;
   publishedAt: string | null;
@@ -23,4 +21,4 @@ export type Project = {
 
 export type ProjectInput = Pick<Project, "slug" | "title" | "category" | "location" | "departmentSlug" | "summary" | "body" | "imageAlt" | "imageCredit" | "imageRightsConfirmed">;
 
-export type PublicProject = Pick<Project, "slug" | "title" | "category" | "location" | "departmentSlug" | "summary" | "body" | "imageAlt" | "imageCredit" | "publishedAt"> & { imageSrc: string | null; isDemo: boolean };
+export type PublicProject = Pick<Project, "slug" | "title" | "category" | "location" | "departmentSlug" | "summary" | "body" | "imageAlt" | "imageCredit" | "publishedAt"> & { imageSrc: string | null };

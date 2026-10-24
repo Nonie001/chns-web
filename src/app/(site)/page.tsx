@@ -5,13 +5,12 @@ import { DepartmentCards } from "@/components/site/department-cards";
 import { HeroCarousel } from "@/components/site/hero-carousel";
 import { PartnerLogoGrid } from "@/components/site/partner-logo-grid";
 import { site } from "@/content/static/site";
-import { leadHeroSlide } from "@/content/static/hero";
-import { listDisplayArticles } from "@/features/articles/article-store";
+import { editorialImage } from "@/content/static/editorial-images";
+import { listPublishedArticles } from "@/features/articles/article-store";
 import { listPublishedSlides } from "@/features/hero/slide-store";
-import type { HeroCarouselItem } from "@/features/hero/types";
 import { getPublicFeatureSlugs } from "@/features/homepage/feature-store";
 import { listPublishedPartners } from "@/features/partners/partner-store";
-import { listDisplayProjects } from "@/features/projects/project-store";
+import { listPublishedProjects } from "@/features/projects/project-store";
 import type { PublicProject } from "@/features/projects/types";
 import { listPublishedReports } from "@/features/reports/report-store";
 
@@ -19,32 +18,25 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const [publishedSlides, featureSlugs, articles, projects, partners, reports] = await Promise.all([
-    listPublishedSlides(), getPublicFeatureSlugs(), listDisplayArticles(),
-    listDisplayProjects(), listPublishedPartners(), listPublishedReports(),
+    listPublishedSlides(), getPublicFeatureSlugs(), listPublishedArticles(),
+    listPublishedProjects(), listPublishedPartners(), listPublishedReports(),
   ]);
-  const featuredProjects = [
-    ...featureSlugs.projects.map((slug) => projects.find((project) => project.slug === slug)),
-    ...projects,
-  ].filter((project): project is PublicProject => Boolean(project))
-    .filter((project, index, items) => items.findIndex((item) => item.slug === project.slug) === index)
-    .slice(0, 10);
+  const configuredProjects = featureSlugs.projects.map((slug) =>
+    projects.find((project) => project.slug === slug) ?? null);
+  const configuredSlugs = new Set(configuredProjects.filter((project): project is PublicProject => Boolean(project)).map((project) => project.slug));
+  const remainingProjects = projects.filter((project) => !configuredSlugs.has(project.slug));
+  const featuredProjects = configuredProjects.map((project) => project ?? remainingProjects.shift() ?? null);
   const leadProject = featuredProjects[0];
-  const secondaryProjects = featuredProjects.slice(1, 5);
-  const rowProjects = featuredProjects.slice(5, 10);
+  const displayedSecondaryProjects = featuredProjects.slice(1, 5).filter((project): project is PublicProject => Boolean(project));
+  const rowProjects = featuredProjects.slice(5, 10).filter((project): project is PublicProject => Boolean(project));
   const featuredArticle = articles.find((article) => article.slug === featureSlugs.article) ?? articles[0];
   const latestArticles = featuredArticle ? [featuredArticle, ...articles.filter((article) => article.slug !== featuredArticle.slug)].slice(0, 6) : [];
   const latestReports = [...reports].sort((a, b) => b.year - a.year).slice(0, 3);
-  const fallbackSlides: HeroCarouselItem[] = [
-    { id: "chns-field-1", imageSrc: "/editorial/chns/hero-1.webp", mobileImageSrc: "/editorial/chns/hero-mobile-1.webp", imageAlt: "ทีมงานจัดเตรียมอาหารในพื้นที่ภารกิจ" },
-    { id: "chns-field-2", imageSrc: "/editorial/chns/hero-2-feed-world.webp", mobileImageSrc: "/editorial/chns/hero-mobile-2.webp", imageAlt: "ภาพประกอบการรณรงค์และการส่งต่ออาหารเพื่อช่วยเหลือผู้เดือดร้อน" },
-    { id: "chns-field-3", imageSrc: "/editorial/chns/hero-3.webp", mobileImageSrc: "/editorial/chns/hero-mobile-3.webp", imageAlt: "ทีมงานส่งมอบสิ่งของช่วยเหลือ" },
-  ];
-  const slides: HeroCarouselItem[] = [leadHeroSlide, ...(publishedSlides.length > 0 ? publishedSlides : fallbackSlides)];
 
   return (
     <>
       <h1 className="sr-only">{site.officialName}</h1>
-      <HeroCarousel slides={slides} />
+      <HeroCarousel slides={publishedSlides} />
       <div className="home-introbar"><div className="shell home-introbar__inner">
         <p className="home-introbar__name">{site.officialName}</p>
         <nav className="home-introbar__links" aria-label="ลิงก์ด่วน">
@@ -69,10 +61,10 @@ export default async function HomePage() {
                 {leadProject.location && <span className="home-lead__meta">{leadProject.location}</span>}
               </div>
             </Link>
-            {secondaryProjects.length > 0 && (
+            {displayedSecondaryProjects.length > 0 && (
               <div className="home-featured__grid2">
-                {secondaryProjects.map((project) => (
-                  <Link className="home-mini" href={`/projects/${project.slug}`} key={project.slug}>
+                {displayedSecondaryProjects.map((project, index) => (
+                  <Link className="home-mini" href={`/projects/${project.slug}`} key={`${project.slug}-${index}`}>
                     <div className="home-mini__media">
                       {project.imageSrc && <Image src={project.imageSrc} alt={project.imageAlt} fill sizes="(max-width: 900px) 50vw, 22vw" unoptimized />}
                       <span className="home-mini__tag">{project.category}</span>
@@ -85,8 +77,8 @@ export default async function HomePage() {
           </div>
           {rowProjects.length > 0 && (
             <div className="home-featured__row">
-              {rowProjects.map((project) => (
-                <Link className="home-mini home-mini--sm" href={`/projects/${project.slug}`} key={project.slug}>
+              {rowProjects.map((project, index) => (
+                <Link className="home-mini home-mini--sm" href={`/projects/${project.slug}`} key={`${project.slug}-${index}`}>
                   <div className="home-mini__media">
                     {project.imageSrc && <Image src={project.imageSrc} alt={project.imageAlt} fill sizes="(max-width: 600px) 50vw, 18vw" unoptimized />}
                     <span className="home-mini__tag">{project.category}</span>
@@ -103,7 +95,7 @@ export default async function HomePage() {
       <section className="section home-process" aria-labelledby="home-process-title">
         <div className="shell home-process__layout">
           <div className="home-process__intro"><p className="eyebrow">HOW WE WORK</p><h2 id="home-process-title" className="section-title">จากการประสานงาน<br /><span>สู่การลงมือร่วมกัน</span></h2><p>งานด้านมนุษยธรรมต้องอาศัยหลายฝ่าย CHNS จึงเชื่อมบทบาทของหน่วยงานและเครือข่ายให้ทำงานไปในทิศทางเดียวกัน</p><Link className="text-link" href="/about">รู้จักการทำงานของเรา ↗</Link></div>
-          <figure className="home-process__image"><div className="home-process__brush"><Image src="/editorial/chns/home-process.webp" alt="การจัดเตรียมถุงยังชีพเพื่อส่งมอบ" fill sizes="(max-width: 800px) 100vw, 48vw" /></div></figure>
+          <figure className="home-process__image"><div className="home-process__brush"><Image src={editorialImage("home-process.webp")} alt="การจัดเตรียมถุงยังชีพเพื่อส่งมอบ" fill sizes="(max-width: 800px) 100vw, 48vw" /></div></figure>
         </div>
       </section>
 

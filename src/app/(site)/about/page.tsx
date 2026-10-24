@@ -1,11 +1,12 @@
+import { editorialImage } from "@/content/static/editorial-images";
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MockNotice } from "@/components/site/mock-notice";
 import { PhotoSlider } from "@/components/site/photo-slider";
 import { aboutGallery, organizationDirection, organizationHistory } from "@/content/static/organization";
-import { departments, site } from "@/content/static/site";
+import { site } from "@/content/static/site";
+import { OrganizationChart } from "@/features/about/organization-chart";
 import { StoryCarousel } from "@/features/about/story-carousel";
 
 export const metadata: Metadata = {
@@ -25,7 +26,7 @@ const sections = [
 export default function AboutPage() {
   return (
     <>
-      <section className="inner-hero" style={{ "--hero-image": "url(/editorial/chns/page-about.webp)" } as CSSProperties}>
+      <section className="inner-hero" style={{ "--hero-image": `url(${editorialImage("page-about.webp")})` } as CSSProperties}>
         <div className="shell inner-hero__grid">
           <div>
             <p className="eyebrow eyebrow--light">ABOUT CHNS</p>
@@ -88,9 +89,9 @@ export default function AboutPage() {
           </div>
           <figure className="about-history__media">
             <div className="about-history__photo">
-              <Image src="/editorial/home-hero.webp" alt="" fill sizes="(max-width: 1000px) 92vw, 34vw" />
+              <Image src={editorialImage("about-main.webp")} alt="" fill sizes="(max-width: 1000px) 92vw, 34vw" />
             </div>
-            <figcaption>ภาพประกอบเพื่อการออกแบบ</figcaption>
+            <figcaption>ภาพจากชุดสื่อ CHNS</figcaption>
           </figure>
         </div>
       </section>
@@ -112,15 +113,8 @@ export default function AboutPage() {
         <div className="shell">
           <p className="eyebrow">ORGANIZATION</p>
           <h2 className="section-title" id="structure-title">โครงสร้างบริหาร</h2>
-          <p className="large-copy">ภาพรวมความสัมพันธ์ของฝ่ายงานและเครือข่ายตามผังองค์กร 2569–2573</p>
-          <MockNotice>ผังหน้านี้แสดงระดับโครงสร้างเท่านั้น รายชื่อคณะกรรมการและตำแหน่งจะเพิ่มเมื่อได้รับข้อมูลที่อนุมัติ</MockNotice>
-          <div className="structure-chart">
-            <div className="structure-chart__top">สภาเครือข่ายช่วยเหลือด้านมนุษยธรรม</div>
-            <div className="structure-chart__mid">คณะกรรมการบริหาร · ประธาน · เลขาธิการ</div>
-            <div className="structure-chart__branch">ฝ่ายงาน 8 ฝ่าย</div>
-            <div className="structure-chart__grid">{departments.map((department) => <Link href={`/departments/${department.slug}`} key={department.slug}>{department.name}<span aria-hidden="true">↗</span></Link>)}</div>
-            <div className="structure-chart__bottom">ศูนย์ประสานงานระดับภูมิภาค · ศูนย์ประสานงานระดับจังหวัด · องค์กรสมาชิก</div>
-          </div>
+          <p className="large-copy">ลำดับการบริหาร ฝ่ายงาน และเครือข่ายพื้นที่ตามผังองค์กร พ.ศ. 2569–2573</p>
+          <OrganizationChart />
           <div className="page-actions"><Link className="button button--dark" href="/centers">ดูเครือข่ายพื้นที่ <span aria-hidden="true">↗</span></Link></div>
         </div>
       </section>

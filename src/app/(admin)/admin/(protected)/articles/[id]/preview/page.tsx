@@ -19,7 +19,6 @@ export default async function ArticlePreviewPage({ params }: PageProps<"/admin/a
         imageAlt: article.imageAlt,
         imageCredit: article.imageCredit,
         publishedAt: article.status === "published" ? article.publishedAt : null,
-        isDemo: article.isMockup,
       }} />
     </div>
   );
